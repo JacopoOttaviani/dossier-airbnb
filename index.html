@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airbnb and Europe's Rent Crisis — The Cormoran · Dossier Nº 1</title>
+<meta name="description" content="Airbnb and the cost of renting in Europe: a data dossier on six cities — Rome, Barcelona, Paris, Berlin, Lisbon, London — by The Cormoran.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪶</text></svg>">
+</head>
+<body>
+
+<!-- ================= MENU BAR ================= -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="#top"><span class="brand-the">The</span> Cormoran</a>
+    <nav class="mast-nav" aria-label="Main">
+      <a href="#dossier" class="mast-dossier">Airbnb &amp; Europe's Rent Crisis</a>
+      <a href="#cities">The six cities</a>
+      <a href="#restrictions">Did the rules work?</a>
+      <a href="#sources">Sources</a>
+    </nav>
+    <div class="mast-social">
+      <a class="soc" href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.9 1.2h3.7l-8.1 9.3L24 22.8h-7.5l-5.9-7.7-6.7 7.7H.2l8.7-9.9L0 1.2h7.7l5.3 7 5.9-7zm-1.3 19.4h2L6.6 3.3h-2.2l13.2 17.3z"/></svg></a>
+      <a class="soc" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
+      <a class="soc" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 2c-3.1 0-3.5 0-4.8.1-1.1.1-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.6-.3 1.7-.1 1.3-.1 1.7-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.6.3 1.7.3 1.3.1 1.7.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.6.3-1.7.1-1.3.1-1.7.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.6-.3-1.7-.3-1.3-.1-1.7-.1-4.8-.1zm0 3.4a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8zm0 7.2a2.9 2.9 0 1 0 0-5.7 2.9 2.9 0 0 0 0 5.7zm5.6-7.4a1 1 0 1 1-2.1 0 1 1 0 0 1 2.1 0z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-art" id="hero-art" aria-hidden="true">
+    <img class="hero-photo" src="assets/header-barcelona.jpg" alt="" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <p class="kicker">A Cormoran Data Dossier · <span class="no">Nº 1 — Housing</span></p>
+    <h1>Airbnb and Europe's <em>Rent Crisis</em></h1>
+    <p class="standfirst">In 2024, travellers spent 854 million nights in Europe's platform rentals — a record. In the great cities, whole streets now sleep in someone else's bed. Six city portraits, three questions: how much of the housing is on Airbnb, what has it done to the rent, and did the crackdowns actually work?</p>
+    <p class="hero-meta">August 2026 · Data: Inside Airbnb, Eurostat, national statistics · ~9 min read</p>
+    <p class="hero-credit">Photo: Barcelona's Eixample — <a href="https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-hVhfqhDYciU">Logan Armstrong / Unsplash</a></p>
+  </div>
+</section>
+
+<!-- ================= INTRO TEXT ================= -->
+<article class="article" id="dossier">
+  <div class="wrap intro-grid">
+    <div class="intro-text">
+    <p class="lede">There is a small metal box bolted to a drainpipe in every European city you have ever loved. Inside it is a key, and behind the key is an apartment that no one calls home. Rome has banned the boxes; Paris has capped the nights; Barcelona has promised to abolish the trade altogether. Yet in June 2026, the six cities in this dossier — Rome, Barcelona, Paris, Berlin, Lisbon and London — still counted more than a quarter of a million active listings on Airbnb between them.</p>
+    <p>The scale is no longer a niche phenomenon of the sharing economy. According to Eurostat, guests booked 854 million nights through Airbnb, Booking, Expedia and TripAdvisor in the EU in 2024 — up 19 per cent in a single year, and nearly a billion including the following season. Paris alone absorbed more platform nights than the whole of some member states. In the centre of Rome, one listing exists for every handful of households; in Lisbon's Santa Maria Maior, the medieval parish that gave the city its name and its fado, short lets outnumber many streets' remaining residents.</p>
+    <p>Does any of this raise the rent? The honest answer from the academic literature is: yes, measurably, though it is not the whole story. The most careful European study, <a href="https://doi.org/10.1016/j.jue.2020.103278">on Barcelona</a>, found that Airbnb activity pushed rents up 1.9 per cent citywide — and 7 per cent in the neighbourhoods where listings concentrate. In Berlin, <a href="https://www.diw.de/de/diw_01.c.793359.de/publikationen/diskussionspapiere/2020_1890/airbnb_and_rents__evidence_from_berlin.html">researchers at DIW</a> calculated that each additional entire-home listing displaces roughly a quarter to a third of a long-term rental unit. These are not catastrophic numbers on their own. But they land on top of a decade in which rents in these six cities rose between 18 and 100 per cent, and they concentrate precisely where housing is scarcest: the historic centre, the walkable district, the place people actually want to live.</p>
+    <p>So cities fought back, each with its own weapon. Berlin banned unpermitted entire-home lets as early as 2016. Paris built Europe's most sophisticated registration system and cut its annual cap to 90 nights. Lisbon froze new licences; Barcelona will let every one of its 10,000 licences expire in 2028; London has had a 90-night rule for a decade — with almost no way to enforce it; Rome, until last year, had barely any rules at all.</p>
+    <p>This dossier measures what happened next. The verdict, visible in the data: regulation can genuinely shrink the short-let market — Berlin is the proof — but nowhere has it, by itself, made the rent go down.</p>
+    <p class="note">All listing figures in this dossier are computed by The Cormoran from Inside Airbnb's June 2026 city snapshots. Rent series are indicative indices compiled from national and municipal sources, indexed to 2015. Full methodology and sources at the foot of the page.</p>
+    </div>
+
+    <aside class="intro-rail" aria-label="The six cities at a glance">
+      <h3 class="rail-title">The decade at a glance</h3>
+      <p class="rail-sub">Market rents since 2015 — every panel on the same scale, steepest first. Each card links to its chapter.</p>
+      <div class="rail-grid" id="rail-grid"></div>
+      <p class="rail-foot">Rent indices, 2015 = 100, compiled by The Cormoran · listings and share of dwellings from <a href="https://insideairbnb.com/get-the-data/">Inside Airbnb</a>, June 2026 · <a href="#sources">full sources for every series</a></p>
+    </aside>
+  </div>
+</article>
+
+<!-- ================= EUROPE MAP ================= -->
+<section id="map">
+  <div class="section-head">
+    <p class="eyebrow">01 · The map</p>
+    <h2>One continent, twenty-three markets</h2>
+    <p class="dek">Airbnb pressure is not evenly spread. Port and heritage cities — Porto, Florence, Venice, Lisbon — carry three to four times the per-capita load of the northern capitals. Paris manages to be both: a metropolis with the intensity of a resort town.</p>
+  </div>
+  <figure class="viz">
+    <div class="viz-head">
+      <div class="viz-title">Airbnb density across Europe</div>
+      <div class="viz-sub">Active Airbnb listings per 1,000 residents, June 2026 · hover any city</div>
+    </div>
+    <div class="viz-canvas" id="europe-map"></div>
+    <div class="legend" id="europe-legend"></div>
+    <details class="data-table">
+      <summary>View as table</summary>
+      <table id="europe-table">
+        <thead><tr><th>City</th><th>Listings</th><th>Per 1,000</th><th>Entire homes</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </details>
+    <figcaption class="src">Source: The Cormoran analysis of <a href="https://insideairbnb.com/get-the-data/">Inside Airbnb</a> (June 2026 snapshots); populations from national statistical institutes (<a href="https://www.istat.it">ISTAT</a>, <a href="https://www.ine.es">INE</a>, <a href="https://www.insee.fr">INSEE</a>, <a href="https://www.statistik-berlin-brandenburg.de">AfS Berlin-Brandenburg</a>, <a href="https://www.ine.pt">INE.pt</a>, <a href="https://www.ons.gov.uk">ONS</a>). Dublin figure covers the county; Brussels the capital region.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= SIX CITIES ================= -->
+<div class="section-head" id="cities">
+  <p class="eyebrow">02 · Six cities</p>
+  <h2>Six cities, six experiments</h2>
+  <p class="dek">The same platform produced six different markets. For each city: every listing mapped, a decade of rents, and the numbers that matter.</p>
+</div>
+
+<nav class="city-nav" aria-label="Cities">
+  <div class="city-nav-inner">
+    <a href="#rome" style="--city:#C4452F">Rome</a>
+    <a href="#barcelona" style="--city:#4763D6">Barcelona</a>
+    <a href="#paris" style="--city:#0087A0">Paris</a>
+    <a href="#berlin" style="--city:#B0448E">Berlin</a>
+    <a href="#lisbon" style="--city:#8A6A00">Lisbon</a>
+    <a href="#london" style="--city:#5C5344">London</a>
+  </div>
+</nav>
+
+<!-- ---------- ROME ---------- -->
+<section class="city" id="rome" style="--city:#C4452F">
+  <div class="city-head">
+    <h3>Rome</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">37,228 listings · dot size scales with density · hover the map to name any <em>municipio</em></div>
+      </div>
+      <div class="viz-canvas" id="map-rome"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/rome">Inside Airbnb — Rome</a>, <a href="https://data.insideairbnb.com/italy/lazio/rome/2026-06-20/visualisations/listings.csv">20 June 2026 snapshot</a>. Basemap: municipal boundaries from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +38% in a decade</div>
+        <div class="viz-sub">Indicative market-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-rome"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from <a href="https://www.idealista.it/sala-stampa/report-prezzo-immobiliare/affitto/">idealista</a> asking-rent reports.</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-rome"></div><div class="l">active listings</div></div>
+      <div class="stat"><div class="n" id="st-entire-rome"></div><div class="l">entire homes</div></div>
+      <div class="stat"><div class="n" id="st-per1000-rome"></div><div class="l">listings per 1,000 residents</div></div>
+      <div class="stat"><div class="n" id="st-stock-rome"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-rome"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text">Rome's market is a monoculture: <b>18,837 listings — 51 per cent of the entire city's supply — sit in a single neighbourhood, the Centro Storico</b>. Platform tourism in Lazio more than doubled between 2018 and 2025, from 10.1 to 21.1 million guest nights, the fastest growth of our six cities. Italy only introduced its first serious instrument — the CIN national registration code — in January 2025, alongside Rome's celebrated ban on key-boxes. Neither caps the number of nights, nor the number of homes.</p>
+    <p class="policy"><b>The rulebook</b> · <a href="https://bdsr.ministeroturismo.gov.it/">National ID code (CIN)</a> mandatory since Jan 2025 · key-box ban in the centre · no cap on nights or licences.</p>
+  </div>
+</section>
+
+<!-- ---------- BARCELONA ---------- -->
+<section class="city" id="barcelona" style="--city:#4763D6">
+  <div class="city-head">
+    <h3>Barcelona</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">15,406 listings · dot size scales with density · hover the map to name any <em>barri</em></div>
+      </div>
+      <div class="viz-canvas" id="map-barcelona"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/barcelona">Inside Airbnb — Barcelona</a>, <a href="https://data.insideairbnb.com/spain/catalonia/barcelona/2026-06-24/visualisations/listings.csv">24 June 2026 snapshot</a>. Basemap: district boundaries from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +66% in a decade</div>
+        <div class="viz-sub">Indicative market-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-barcelona"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from <a href="https://habitatge.gencat.cat/ca/dades/indicadors_estadistiques/estadistiques_de_construccio_i_mercat_immobiliari/mercat_de_lloguer/">Incasòl registered-contract statistics</a> (Generalitat de Catalunya).</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-barcelona"></div><div class="l">active listings</div></div>
+      <div class="stat"><div class="n" id="st-entire-barcelona"></div><div class="l">entire homes</div></div>
+      <div class="stat"><div class="n" id="st-per1000-barcelona"></div><div class="l">listings per 1,000 residents</div></div>
+      <div class="stat"><div class="n" id="st-stock-barcelona"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-barcelona"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text">No licence has been issued since 2014, and it shows: relative to its population, Barcelona now has the second-smallest market of the six — but by far the most industrial. <b>Four listings in five belong to a multi-property host</b>, the highest share in this dossier; a full quarter of the supply is packed into the Eixample grid. The landmark <a href="https://doi.org/10.1016/j.jue.2020.103278">Garcia-López study</a> put Airbnb's contribution at +1.9 per cent on rents citywide and +7 per cent in the most exposed neighbourhoods. The city's answer is the most radical in Europe: every one of its ~10,000 tourist licences expires, unrenewed, in November 2028 — a plan Spain's Constitutional Court upheld in 2025.</p>
+    <p class="policy"><b>The rulebook</b> · Licence freeze since 2014 · <a href="https://ajuntament.barcelona.cat/pla-allotjaments-turistics/es/">PEUAT zoning</a> since 2017 · all licences void by Nov 2028.</p>
+  </div>
+</section>
+
+<!-- ---------- PARIS ---------- -->
+<section class="city" id="paris" style="--city:#0087A0">
+  <div class="city-head">
+    <h3>Paris</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">77,679 listings · dot size scales with density · hover the map to name any <em>quartier</em></div>
+      </div>
+      <div class="viz-canvas" id="map-paris"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/paris">Inside Airbnb — Paris</a>, <a href="https://data.insideairbnb.com/france/ile-de-france/paris/2026-06-16/visualisations/listings.csv">16 June 2026 snapshot</a>. Basemap: arrondissement quartiers from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +18% in a decade</div>
+        <div class="viz-sub">Indicative market-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-paris"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from the <a href="https://www.observatoire-des-loyers.fr/">Observatoire local des loyers</a> (OLAP). Paris has re-applied rent control since 2019.</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-paris"></div><div class="l">active listings</div></div>
+      <div class="stat"><div class="n" id="st-entire-paris"></div><div class="l">entire homes — the highest share in Europe</div></div>
+      <div class="stat"><div class="n" id="st-per1000-paris"></div><div class="l">listings per 1,000 residents</div></div>
+      <div class="stat"><div class="n" id="st-stock-paris"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-paris"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text"><b>One Parisian dwelling in twenty is currently listed as an entire home on Airbnb</b> — 69,265 apartments, in the densest housing market on the continent. And yet Paris is also the capital of the amateur host: 89 per cent of listings are entire homes, but almost two-thirds of hosts have exactly one, renting their own flat within the legal cap. The cap itself keeps tightening — registration in 2017, 120 nights, then 90 from January 2025 under the Le Meur law — while platform nights in the Île-de-France kept doubling, from 14.4 million in 2018 to 30.2 million in 2025. Rents, held partly in check by re-imposed rent control, rose the least of our six cities.</p>
+    <p class="policy"><b>The rulebook</b> · Registration since 2017 · <a href="https://www.service-public.fr/particuliers/vosdroits/F2045">90-night cap</a> on primary homes since Jan 2025 · fines up to €100k · rent control since 2019.</p>
+  </div>
+</section>
+
+<!-- ---------- BERLIN ---------- -->
+<section class="city" id="berlin" style="--city:#B0448E">
+  <div class="city-head">
+    <h3>Berlin</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">12,855 listings · dot size scales with density · hover the map to name any <em>Bezirk</em></div>
+      </div>
+      <div class="viz-canvas" id="map-berlin"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/berlin">Inside Airbnb — Berlin</a>, <a href="https://data.insideairbnb.com/germany/be/berlin/2026-06-26/visualisations/listings.csv">26 June 2026 snapshot</a>. Basemap: Ortsteil boundaries from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +85% in a decade</div>
+        <div class="viz-sub">Indicative asking-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-berlin"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from the <a href="https://www.ibb.de/de/ueber-uns/publikationen/wohnungsmarktbericht/2025.html">IBB Wohnungsmarktbericht</a> and ImmoScout24 asking rents. The 2020–21 dip is the short-lived Mietendeckel rent cap.</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-berlin"></div><div class="l">active listings</div></div>
+      <div class="stat"><div class="n" id="st-entire-berlin"></div><div class="l">entire homes</div></div>
+      <div class="stat"><div class="n" id="st-per1000-berlin"></div><div class="l">listings per 1,000 residents — the lowest of the six</div></div>
+      <div class="stat"><div class="n" id="st-stock-berlin"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-berlin"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text">Berlin is the control group. Its <em>Zweckentfremdungsverbot</em> — the ban on converting homes to other uses, enforced against short lets since May 2016 — left a city of 3.8 million with fewer listings than Lisbon, a city of 567,000. <b>Just 0.4 per cent of Berlin's dwellings are entire-home listings, one-twelfth of the Paris rate</b>, and the city says over 8,000 apartments have been returned to the long-term market. It is the only region in this dossier where platform tourism is still below its 2018 level. And yet asking rents rose 85 per cent in a decade — the sharpest climb of the six. Airbnb was never Berlin's main problem; a city growing by 40,000 people a year with a frozen construction pipeline is.</p>
+    <p class="policy"><b>The rulebook</b> · <a href="https://www.berlin.de/sen/wohnen/rechtliches/zweckentfremdungsverbot/">Conversion ban (Zweckentfremdungsverbot)</a> since 2014, enforced 2016 · permit + registration number required · 90-day cap on secondary homes · fines up to €500k.</p>
+  </div>
+</section>
+
+<!-- ---------- LISBON ---------- -->
+<section class="city" id="lisbon" style="--city:#8A6A00">
+  <div class="city-head">
+    <h3>Lisbon</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">17,098 listings in the city proper · dot size scales with density · hover the map to name any <em>freguesia</em></div>
+      </div>
+      <div class="viz-canvas" id="map-lisbon"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/lisbon">Inside Airbnb — Lisbon</a>, <a href="https://data.insideairbnb.com/portugal/lisbon/lisbon/2026-06-23/visualisations/listings.csv">23 June 2026 snapshot</a>, filtered to the Lisbon municipality. Basemap: parish (freguesia) boundaries from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +100% in a decade</div>
+        <div class="viz-sub">Indicative market-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-lisbon"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from <a href="https://www.ine.pt">INE Portugal</a> and <a href="https://www.confidencialimobiliario.com/">Confidencial Imobiliário</a> new-contract data.</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-lisbon"></div><div class="l">active listings (city proper)</div></div>
+      <div class="stat"><div class="n" id="st-entire-lisbon"></div><div class="l">entire homes</div></div>
+      <div class="stat"><div class="n" id="st-per1000-lisbon"></div><div class="l">listings per 1,000 residents</div></div>
+      <div class="stat"><div class="n" id="st-stock-lisbon"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-lisbon"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text">Nowhere in this dossier did rents move like Lisbon's: <b>the price of a new lease roughly doubled between 2015 and 2025</b>, the steepest climb in western Europe, while wages stayed Portuguese. The old town bears the weight — 3,585 listings in Santa Maria Maior alone, the parish of the cathedral and the fado houses — and three-quarters of the city's supply is professionally run. The 2023 <em>Mais Habitação</em> law froze new licences nationwide and, visibly in the data, slowed platform-night growth to a crawl; a new government partially reversed it a year later, handing the decision back to municipalities. Lisbon's own freeze, in the centre, stands.</p>
+    <p class="policy"><b>The rulebook</b> · Containment zones since 2018 · national <a href="https://rnt.turismodeportugal.pt/RNT/ConsultaRegisto.aspx">Alojamento Local licence</a> freeze Oct 2023, devolved to municipalities late 2024 · Lisbon centre still frozen.</p>
+  </div>
+</section>
+
+<!-- ---------- LONDON ---------- -->
+<section class="city" id="london" style="--city:#5C5344">
+  <div class="city-head">
+    <h3>London</h3>
+  </div>
+  <div class="city-grid">
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">Every listing on the map</div>
+        <div class="viz-sub">92,799 listings · dot size scales with density · hover the map to name any borough</div>
+      </div>
+      <div class="viz-canvas" id="map-london"></div>
+      <figcaption class="src">Source: <a href="https://insideairbnb.com/london">Inside Airbnb — London</a>, <a href="https://data.insideairbnb.com/united-kingdom/england/london/2026-06-19/visualisations/listings.csv">19 June 2026 snapshot</a>. Basemap: borough boundaries from the same release.</figcaption>
+    </figure>
+    <figure class="viz">
+      <div class="viz-head">
+        <div class="viz-title">What happened to rents: +35% in a decade</div>
+        <div class="viz-sub">Indicative market-rent index, 2015 = 100</div>
+      </div>
+      <div class="viz-canvas" id="rent-london"></div>
+      <figcaption class="src">Indicative index compiled by The Cormoran from the <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/latest">ONS Price Index of Private Rents</a> (London).</figcaption>
+    </figure>
+  </div>
+  <div class="megadida">
+    <div class="stats">
+      <div class="stat"><div class="n" id="st-listings-london"></div><div class="l">active listings — Europe's largest market</div></div>
+      <div class="stat"><div class="n" id="st-entire-london"></div><div class="l">entire homes</div></div>
+      <div class="stat"><div class="n" id="st-per1000-london"></div><div class="l">listings per 1,000 residents</div></div>
+      <div class="stat"><div class="n" id="st-stock-london"></div><div class="l">of the city's dwellings are entire-home listings</div></div>
+      <div class="stat"><div class="n" id="st-multi-london"></div><div class="l">of listings run by multi-property hosts</div></div>
+    </div>
+    <p class="dida-text">London has had a rule since 2015 — entire homes may be let short-term for at most 90 nights a year — and essentially no way to know who breaks it: there is still no registration scheme, so enforcement falls to borough officers with no data. The result is <b>the largest short-let market in Europe, 92,799 listings, with 10,921 in Westminster alone</b> — more than all of Berlin. After a flat pandemic decade, London rents then jumped by more than a tenth in 2024 alone, the fastest on record. A national registration scheme for England has been legislated and is now, slowly, being switched on.</p>
+    <p class="policy"><b>The rulebook</b> · 90-night annual cap since 2015 (<a href="https://www.legislation.gov.uk/ukpga/2015/20/section/44">Deregulation Act 2015, s.44</a>) · no registration yet — national scheme in rollout · boroughs enforce case-by-case.</p>
+  </div>
+</section>
+
+<!-- ================= RESTRICTIONS / TIME SERIES ================= -->
+<section class="restrict" id="restrictions">
+  <div class="section-head">
+    <p class="eyebrow">03 · The verdict</p>
+    <h2>Did the crackdowns work?</h2>
+    <p class="dek">The cleanest measurement we have: Eurostat receives guest-night counts directly from the four big platforms, region by region, since 2018. Index them to 2019 — the last pre-pandemic year — and the policies write themselves onto the chart.</p>
+  </div>
+  <figure class="viz">
+    <div class="viz-head">
+      <div class="viz-title">Seven years of platform tourism, five city regions</div>
+      <div class="viz-sub">Guest nights booked via Airbnb, Booking, Expedia &amp; TripAdvisor · index, 2019 = 100 · numbered dots mark policy events</div>
+    </div>
+    <div class="viz-canvas" id="eurostat-chart"></div>
+    <div class="legend" id="eurostat-legend"></div>
+    <details class="data-table">
+      <summary>View as table (million nights)</summary>
+      <table id="eurostat-table">
+        <thead><tr><th>Region</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </details>
+    <figcaption class="src">Source: Eurostat, <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Short-stay_accommodation_offered_via_online_collaborative_economy_platforms">experimental platform statistics</a> — dataset <a href="https://ec.europa.eu/eurostat/databrowser/view/tour_ce_omn12/default/table">tour_ce_omn12</a>, NUTS-2 regions, all platforms, total nights, retrieved August 2026. London is absent: the UK left the EU data agreement. Policy markers: ① <a href="https://rnt.turismodeportugal.pt/RNT/ConsultaRegisto.aspx">Lisbon licence freeze</a> (Oct 2023) · ② <a href="https://ajuntament.barcelona.cat/pla-allotjaments-turistics/es/">Barcelona announces 2028 phase-out</a> (Jun 2024) · ③ <a href="https://www.service-public.fr/particuliers/vosdroits/F2045">Paris cap cut to 90 nights</a> (Jan 2025) · ④ <a href="https://bdsr.ministeroturismo.gov.it/">Italy's CIN code mandatory</a> (Jan 2025).</figcaption>
+  </figure>
+
+  <div class="events">
+    <div class="event-card" style="--city:#B0448E">
+      <h4>Berlin <span class="delta">77</span></h4>
+      <p class="ev"><b>BANNED EARLY, ENFORCED HARD.</b> The 2016 conversion ban predates this data — which is the point: Berlin enters the series already suppressed and is the only region still below its 2018 level. Roughly 8,000 homes returned to the rental market. Rents rose anyway.</p>
+    </div>
+    <div class="event-card" style="--city:#8A6A00">
+      <h4>Lisbon <span class="delta">112</span></h4>
+      <p class="ev"><b>FROZE, THEN BLINKED.</b> After the Oct 2023 licence freeze, growth in the metro area slowed to +8% while Rome ran at +24%. The 2024 reversal returned the power to city halls; Lisbon kept its centre frozen. The only visible mid-series bend in the data.</p>
+    </div>
+    <div class="event-card" style="--city:#4763D6">
+      <h4>Barcelona <span class="delta">131</span></h4>
+      <p class="ev"><b>THE LONG GOODBYE.</b> A licence freeze since 2014 capped the fleet but not the demand: nights are a third above 2019. The real experiment starts November 2028, when every licence in the city expires at once — Europe's first full phase-out.</p>
+    </div>
+    <div class="event-card" style="--city:#C4452F">
+      <h4>Rome <span class="delta">187</span></h4>
+      <p class="ev"><b>THE COUNTERFACTUAL.</b> This is what no meaningful regulation looks like: platform nights in Lazio nearly doubled against 2019, the fastest of the five. The CIN code (2025) identifies hosts; it does not limit them.</p>
+    </div>
+    <div class="event-card" style="--city:#0087A0">
+      <h4>Paris <span class="delta">202</span></h4>
+      <p class="ev"><b>CAPS WITHOUT A CEILING.</b> The strictest registration system in Europe, a 90-night cap — and platform nights still doubled since 2019. Caps discipline individual hosts; they do not cap a city where 77,000 listings each stay legal one booking at a time.</p>
+    </div>
+    <div class="event-card" style="--city:#5C5344">
+      <h4>London <span class="delta">—</span></h4>
+      <p class="ev"><b>NO DATA, NO RULE, NO REGISTER.</b> The UK dropped out of the Eurostat platform agreement with Brexit — fittingly, since London's 90-night rule also runs on missing data. Registration for England is finally in rollout; measurement will precede enforcement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<article class="article" id="sources" style="padding-top:0">
+  <div class="section-head">
+    <p class="eyebrow">04 · Method</p>
+    <h2>Sources &amp; method</h2>
+    <p class="dek">Every number on this page is traceable to a public source. Where we built a series ourselves, we say so and link the underlying publisher.</p>
+  </div>
+  <div class="wrap">
+    <dl class="srclist">
+      <div class="srcrow">
+        <dt>Listings &amp; maps</dt>
+        <dd><a href="https://insideairbnb.com/get-the-data/">Inside Airbnb</a> city snapshots of 15–30 June 2026, analysed by The Cormoran: counts, room types, host concentration, neighbourhood shares, and the coordinate grids and boundary basemaps behind every map here. Lisbon and Porto filtered to the municipality.<br>
+        <span class="files">Snapshot files used:
+        <a href="https://data.insideairbnb.com/italy/lazio/rome/2026-06-20/visualisations/listings.csv">Rome</a> ·
+        <a href="https://data.insideairbnb.com/spain/catalonia/barcelona/2026-06-24/visualisations/listings.csv">Barcelona</a> ·
+        <a href="https://data.insideairbnb.com/france/ile-de-france/paris/2026-06-16/visualisations/listings.csv">Paris</a> ·
+        <a href="https://data.insideairbnb.com/germany/be/berlin/2026-06-26/visualisations/listings.csv">Berlin</a> ·
+        <a href="https://data.insideairbnb.com/portugal/lisbon/lisbon/2026-06-23/visualisations/listings.csv">Lisbon</a> ·
+        <a href="https://data.insideairbnb.com/united-kingdom/england/london/2026-06-19/visualisations/listings.csv">London</a></span></dd>
+      </div>
+      <div class="srcrow">
+        <dt>Platform nights</dt>
+        <dd>Eurostat <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Short-stay_accommodation_offered_via_online_collaborative_economy_platforms">experimental short-stay statistics</a>, dataset <a href="https://ec.europa.eu/eurostat/databrowser/view/tour_ce_omn12/default/table">tour_ce_omn12</a> — reported to Eurostat directly by Airbnb, Booking, Expedia and TripAdvisor. Retrieved August 2026. <em>The UK is not covered.</em></dd>
+      </div>
+      <div class="srcrow">
+        <dt>Housing stock</dt>
+        <dd>National censuses and dwelling-stock statistics, latest available:
+        <a href="https://www.istat.it">ISTAT</a>,
+        <a href="https://www.ine.es">INE (Spain)</a>,
+        <a href="https://www.insee.fr">INSEE</a>,
+        <a href="https://www.statistik-berlin-brandenburg.de">Amt für Statistik Berlin-Brandenburg</a>,
+        <a href="https://www.ine.pt">INE (Portugal)</a>,
+        <a href="https://www.ons.gov.uk">ONS</a>. <em>Shares of stock are approximations.</em></dd>
+      </div>
+      <div class="srcrow">
+        <dt>Rents</dt>
+        <dd><em>Indicative indices compiled by The Cormoran</em> — they show direction and magnitude, not official statistics. Built from
+        <a href="https://www.idealista.it/sala-stampa/report-prezzo-immobiliare/affitto/">idealista</a> (Rome),
+        <a href="https://habitatge.gencat.cat/ca/dades/indicadors_estadistiques/estadistiques_de_construccio_i_mercat_immobiliari/mercat_de_lloguer/">Incasòl</a> (Barcelona),
+        <a href="https://www.observatoire-des-loyers.fr/">OLAP</a> (Paris),
+        <a href="https://www.ibb.de/de/ueber-uns/publikationen/wohnungsmarktbericht/2025.html">IBB</a> and ImmoScout24 (Berlin),
+        <a href="https://www.ine.pt">INE</a> and <a href="https://www.confidencialimobiliario.com/">Confidencial Imobiliário</a> (Lisbon),
+        <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/latest">ONS Price Index of Private Rents</a> (London).</dd>
+      </div>
+      <div class="srcrow">
+        <dt>Peer-reviewed research</dt>
+        <dd>Garcia-López, Jofre-Monseny, Martínez-Mazza &amp; Segú, <a href="https://doi.org/10.1016/j.jue.2020.103278">“Do short-term rental platforms affect housing markets? Evidence from Airbnb in Barcelona”</a>, <em>Journal of Urban Economics</em> (2020) — <a href="https://discovery.ucl.ac.uk/id/eprint/10172148/1/Airbnb_JUE_2020.pdf">open-access PDF</a>.<br>
+        Duso, Michelsen, Schaefer &amp; Tran, <a href="https://www.diw.de/de/diw_01.c.793359.de/publikationen/diskussionspapiere/2020_1890/airbnb_and_rents__evidence_from_berlin.html">“Airbnb and Rents: Evidence from Berlin”</a>, DIW Berlin Discussion Paper 1890.<br>
+        Barron, Kung &amp; Proserpio, <a href="https://doi.org/10.1287/mksc.2020.1227">“The Effect of Home-Sharing on House Prices and Rents”</a>, <em>Marketing Science</em> (2021).</dd>
+      </div>
+      <div class="srcrow">
+        <dt>Regulation</dt>
+        <dd>Official registers and statutes:
+        <a href="https://bdsr.ministeroturismo.gov.it/">Italy's CIN database</a> ·
+        <a href="https://ajuntament.barcelona.cat/pla-allotjaments-turistics/es/">Barcelona PEUAT</a> ·
+        <a href="https://www.service-public.fr/particuliers/vosdroits/F2045">France, meublés de tourisme</a> ·
+        <a href="https://www.berlin.de/sen/wohnen/rechtliches/zweckentfremdungsverbot/">Berlin Zweckentfremdungsverbot</a> ·
+        <a href="https://rnt.turismodeportugal.pt/RNT/ConsultaRegisto.aspx">Portugal's Alojamento Local register</a> ·
+        <a href="https://www.legislation.gov.uk/ukpga/2015/20/section/44">UK Deregulation Act 2015, s.44</a></dd>
+      </div>
+      <div class="srcrow">
+        <dt>Also consulted</dt>
+        <dd>Commercial market data from <a href="https://www.airdna.co">AirDNA</a>. Header photograph by <a href="https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-hVhfqhDYciU">Logan Armstrong</a> on Unsplash.</dd>
+      </div>
+      <div class="srcrow">
+        <dt>Corrections</dt>
+        <dd>All figures checked in August 2026. Spotted an error? <a href="mailto:hello@thecormoran.eu">hello@thecormoran.eu</a> — we correct in public.</dd>
+      </div>
+    </dl>
+  </div>
+</article>
+
+<!-- ================= FOOTER ================= -->
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div>
+      <a class="brand" href="#top"><span class="brand-the">The</span> Cormoran</a>
+      <p class="tagline">A European think tank that publishes its research the way journalism should read — and its journalism the way research should hold up.</p>
+      <div class="mast-social" style="margin-left:0;margin-top:18px">
+        <a class="soc" href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.9 1.2h3.7l-8.1 9.3L24 22.8h-7.5l-5.9-7.7-6.7 7.7H.2l8.7-9.9L0 1.2h7.7l5.3 7 5.9-7zm-1.3 19.4h2L6.6 3.3h-2.2l13.2 17.3z"/></svg></a>
+        <a class="soc" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h5>About</h5>
+      <p>The Cormoran publishes data dossiers on the forces reshaping Europe: housing, energy, work, movement. Every number on this page can be traced to a public source — and every dataset we build is open on request.</p>
+    </div>
+  </div>
+  <div class="colophon-bottom">
+    <div class="wrap">
+      <span>© 2026 The Cormoran. Text and visualisations CC BY 4.0.</span>
+      <span>Dossier Nº 1 · published August 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="data/dossier-data.js?v=4"></script>
+<script src="js/main.js?v=10"></script>
+</body>
+</html>
