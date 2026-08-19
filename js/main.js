@@ -11,6 +11,17 @@
   const SEQ = ["#D9E8E4", "#A6C9C4", "#68A0A2", "#337681", "#0B4F5C", "#06333B"];
   const INK2 = "#6B5F49", INK3 = "#93866C", LINE = "#DACDB2";
 
+  /* Europe map mark style — flip this one line to switch. The first two share
+     the same chrome: one petrol hue, the basemap tokens of the city dot maps,
+     and all 23 cities named with their rate beside them.
+     "hollow" outline rings with a pinpoint centre. Area carries the rate and
+              the map stays airy, so the names can sit over the circles.
+     "ink"    small filled discs on the dot maps' opacity ramp — half the size
+              of the original, which is what frees the room for the names.
+     "legacy" the original five-band petrol ramp, colour and area both encoding
+              the rate, nine cities named. */
+  const EUROPE_MAP_STYLE = "hollow";
+
   const fmtN = n => n.toLocaleString("en-GB");
   const svgEl = (tag, attrs) => {
     const e = document.createElementNS(SVGNS, tag);
@@ -131,11 +142,16 @@
     const px = lon => (lon - LON0) * KX * S;
     const py = lat => (LAT1 - lat) * S * 0.92;
 
+    const HOLLOW = EUROPE_MAP_STYLE === "hollow";
+    const INKY = EUROPE_MAP_STYLE !== "legacy";   // the two styles that share the chrome
+
     const svg = svgEl("svg", { viewBox: `0 0 ${W.toFixed(0)} ${H.toFixed(0)}`, role: "img",
       "aria-label": "Map of Europe showing Airbnb listings per thousand residents in 23 cities" });
 
     // countries
-    const gLand = svgEl("g", { fill: "#EDE3CC", stroke: "#D8CBAE", "stroke-width": 1 });
+    const gLand = svgEl("g", INKY
+      ? { fill: "#EBE1C9", stroke: "#D5C7A9", "stroke-width": 0.9, "stroke-linejoin": "round" }
+      : { fill: "#EDE3CC", stroke: "#D8CBAE", "stroke-width": 1 });
     for (const f of D.europe) {
       for (const poly of f.p) {
         let d = "";
@@ -149,19 +165,29 @@
 
     // scales
     const maxP = Math.max(...D.mapCities.map(c => c.per1000));
-    const rOf = v => 4 + 24 * Math.sqrt(v / maxP);
+    const rOf = HOLLOW ? v => 3 + 20 * Math.sqrt(v / maxP)
+              : INKY ? v => 2.4 + 11.5 * Math.sqrt(v / maxP)
+              : v => 4 + 24 * Math.sqrt(v / maxP);
+    // the ramp the city dot maps use, so both maps darken at the same rate
+    const inkOf = v => (0.42 + 0.5 * Math.pow(v / maxP, 0.45)).toFixed(2);
     const colOf = v => v >= 36 ? SEQ[5] : v >= 24 ? SEQ[4] : v >= 15 ? SEQ[3] : v >= 8 ? SEQ[2] : SEQ[1];
 
     const tip = makeTip(host);
     const cities = [...D.mapCities].sort((a, b) => b.per1000 - a.per1000);
 
     const gDots = svgEl("g", {});
+    // the ink circles are small, so hovering rides on a wider invisible disc
+    const gHit = svgEl("g", { fill: "transparent" });
     for (const c of cities) {
       const x = px(c.lon), y = py(c.lat), r = rOf(c.per1000);
-      const dot = svgEl("circle", {
-        cx: x, cy: y, r, fill: colOf(c.per1000), "fill-opacity": 0.82,
-        stroke: "#F7F1E3", "stroke-width": 2
-      });
+      const dot = svgEl("circle", HOLLOW
+        ? { cx: x, cy: y, r, fill: SEQ[4], "fill-opacity": 0.09,
+            stroke: SEQ[4], "stroke-width": 1.4, "stroke-opacity": 0.85 }
+        : INKY
+        ? { cx: x, cy: y, r, fill: SEQ[4], opacity: inkOf(c.per1000),
+            stroke: "#F7F1E3", "stroke-width": 1 }
+        : { cx: x, cy: y, r, fill: colOf(c.per1000), "fill-opacity": 0.82,
+            stroke: "#F7F1E3", "stroke-width": 2 });
       const ttl = document.createElementNS(SVGNS, "title");
       ttl.textContent = `${c.name} — ${c.per1000} listings per 1,000 residents`;
       dot.appendChild(ttl);
@@ -170,20 +196,113 @@
         `<div class="trow"><span>listings</span><span class="v">${fmtN(c.listings)}</span></div>` +
         `<div class="trow"><span>per 1,000 residents</span><span class="v">${c.per1000}</span></div>` +
         `<div class="trow"><span>entire homes</span><span class="v">${c.entirePct}%</span></div>`;
-      dot.addEventListener("mousemove", ev => {
+      const target = INKY ? svgEl("circle", { cx: x, cy: y, r: r + 5 }) : dot;
+      target.addEventListener("mousemove", ev => {
         const bb = host.getBoundingClientRect();
         tip.show(`<b>${c.name}</b>${rows}`, ev.clientX - bb.left, ev.clientY - bb.top);
       });
-      dot.addEventListener("mouseleave", () => tip.hide());
+      target.addEventListener("mouseleave", () => tip.hide());
       gDots.appendChild(dot);
+      // a ring alone leaves the city's actual position vague: pin the centre
+      if (HOLLOW) gDots.appendChild(svgEl("circle", { cx: x, cy: y, r: 1.5, fill: SEQ[4] }));
+      if (target !== dot) gHit.appendChild(target);
     }
     svg.appendChild(gDots);
 
-    // labels for focus cities + the extremes
+    /* every city named, with its rate. Eight candidate slots per city, in
+       order of preference; the first that clears the already-placed labels,
+       every mark and the frame wins. Cities are served by rate descending,
+       so the ones the reader came for get first pick of the good slots. */
+    if (INKY) {
+      const CW = 0.545;                    // mean glyph width / font-size, IBM Plex Sans
+      const marks = cities.map(c => {
+        const r = Math.max(rOf(c.per1000), 2.2);
+        return { x: px(c.lon) - r, y: py(c.lat) - r, w: 2 * r, h: 2 * r };
+      });
+      const hits = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+      const overlap = (a, b) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) *
+                                Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
+      const gAll = svgEl("g", {});
+      svg.appendChild(gAll);
+      svg.appendChild(gHit);               // hit discs last, so they stay on top
+
+      /* Type is measured in svg units, so on a phone it would shrink to five
+         pixels. Grow it back to a readable size instead, and let the names that
+         no longer fit fall away — the table underneath still lists all 23.
+         The six cities with a chapter are served first, so they never drop. */
+      const layout = () => {
+      const scale = (host.clientWidth || W) / W;
+      const tight = scale < 1;
+      const floor = 11.5 / scale;
+      // never droppable: the six with a chapter, plus the three highest rates
+      const pinned = new Set(cities.filter(c => c.focus).map(c => c.key));
+      for (const c of cities.slice(0, 3)) pinned.add(c.key);
+      const queue = tight
+        ? [...cities].sort((a, b) =>
+            (pinned.has(b.key) ? 1 : 0) - (pinned.has(a.key) ? 1 : 0) || b.per1000 - a.per1000)
+        : cities;
+      while (gAll.firstChild) gAll.removeChild(gAll.firstChild);
+      const taken = [];
+      for (const c of queue) {
+        const fs = Math.max(c.focus ? 12.5 : 11.2, floor), val = String(c.per1000);
+        const w = (c.name.length + val.length + 1.2) * CW * fs, h = fs * 1.05;
+        const r = Math.max(rOf(c.per1000), 2.2), gap = r + 3.5;
+        const ring = k => [[gap * k, fs * 0.36, "start"], [-gap * k, fs * 0.36, "end"],
+                          [0, -(r + 4) * k, "middle"], [0, (r + 2) * k + fs, "middle"],
+                          [gap * 0.75 * k, -(r + 3) * k, "start"], [-gap * 0.75 * k, -(r + 3) * k, "end"],
+                          [gap * 0.75 * k, (r + 1) * k + fs, "start"], [-gap * 0.75 * k, (r + 1) * k + fs, "end"]];
+        const slots = ring(1).concat(ring(1.9));   // a second, wider ring before giving up
+        let put = null;
+        for (const [dx, dy, anchor] of slots) {
+          const x = px(c.lon) + dx, y = py(c.lat) + dy;
+          const left = anchor === "start" ? x : anchor === "end" ? x - w : x - w / 2;
+          const box = { x: left - 1.5, y: y - h + 1, w: w + 3, h: h + 2 };
+          if (box.x < 2 || box.x + box.w > W - 2 || box.y < 2 || box.y + box.h > H - 2) continue;
+          if (taken.some(t => hits(box, t)) || marks.some(m => hits(box, m))) continue;
+          put = { x, y, anchor, box };
+          break;
+        }
+        if (!put) {
+          if (tight && !pinned.has(c.key)) continue;   // narrow screen: let it go
+          // nothing is clear, so take the slot that treads on the least
+          for (const [dx, dy, anchor] of slots) {
+            const x = px(c.lon) + dx, y = py(c.lat) + dy;
+            const left = anchor === "start" ? x : anchor === "end" ? x - w : x - w / 2;
+            const box = { x: left - 1.5, y: y - h + 1, w: w + 3, h: h + 2 };
+            if (box.x < 2 || box.x + box.w > W - 2 || box.y < 2 || box.y + box.h > H - 2) continue;
+            let cost = 0;
+            for (const t of taken) cost += overlap(box, t);
+            for (const m of marks) cost += overlap(box, m) * 2;
+            if (!put || cost < put.cost) put = { x, y, anchor, box, cost };
+          }
+          if (!put) {
+            const x = px(c.lon) + gap, y = py(c.lat) + fs * 0.36;
+            put = { x, y, anchor: "start", box: { x: x - 1.5, y: y - h + 1, w: w + 3, h: h + 2 } };
+          }
+        }
+        taken.push(put.box);
+        const t = svgEl("text", { x: put.x.toFixed(1), y: put.y.toFixed(1), "text-anchor": put.anchor,
+          "font-size": fs, "font-weight": c.focus ? 600 : 500, fill: c.focus ? "#201B12" : INK2,
+          "paint-order": "stroke", stroke: "#F7F1E3", "stroke-width": 3, "stroke-linejoin": "round" });
+        const nm = svgEl("tspan", {}); nm.textContent = c.name; t.appendChild(nm);
+        const vl = svgEl("tspan", { fill: SEQ[4], "font-weight": 600, dx: "3.2" });
+        vl.textContent = val; t.appendChild(vl);
+        gAll.appendChild(t);
+      }
+      };
+      layout();
+      let pending;
+      window.addEventListener("resize", () => {
+        clearTimeout(pending);
+        pending = setTimeout(layout, 180);
+      });
+    }
+
+    // legacy: labels for focus cities + the extremes
     const labelled = new Set(["rome", "barcelona", "paris", "berlin", "lisbon", "london", "porto", "florence", "copenhagen"]);
     const gLab = svgEl("g", { "font-size": 13.5, "font-weight": 600, fill: "#201B12" });
     const offsets = { rome: [8, 16], barcelona: [8, -8], paris: [10, -8], berlin: [10, -6], lisbon: [10, 22], london: [-10, -12], porto: [8, -14], florence: [12, 14], copenhagen: [10, -4] };
-    for (const c of cities) {
+    for (const c of INKY ? [] : cities) {
       if (!labelled.has(c.key)) continue;
       const [dx, dy] = offsets[c.key] || [10, -6];
       const anchor = dx < 0 ? "end" : "start";
@@ -192,14 +311,24 @@
       if (!c.focus) { t.setAttribute("font-weight", 400); t.setAttribute("fill", INK2); }
     }
     svg.appendChild(gLab);
+
     host.appendChild(svg);
 
     // legend
     const leg = document.getElementById("europe-legend");
-    const bands = [["< 8", SEQ[1]], ["8–15", SEQ[2]], ["15–24", SEQ[3]], ["24–36", SEQ[4]], ["≥ 36", SEQ[5]]];
-    leg.innerHTML = bands.map(b =>
-      `<span class="li"><span class="swatch dot" style="background:${b[1]}"></span>${b[0]}</span>`
-    ).join("") + `<span class="li" style="color:${INK3}">listings per 1,000 residents · circle area ∝ rate</span>`;
+    if (INKY) {
+      leg.innerHTML =
+        `<span class="li"><span class="swatch ${HOLLOW ? "ring" : "dot"}" ` +
+        `style="${HOLLOW ? "border-color" : "background"}:${SEQ[4]}"></span>` +
+        `the figure beside each city is its rate: listings per 1,000 residents</span>` +
+        `<span class="li" style="color:${INK3}">circle area ∝ rate` +
+        `${HOLLOW ? "" : " · darker means denser, as on the city maps"}</span>`;
+    } else {
+      const bands = [["< 8", SEQ[1]], ["8–15", SEQ[2]], ["15–24", SEQ[3]], ["24–36", SEQ[4]], ["≥ 36", SEQ[5]]];
+      leg.innerHTML = bands.map(b =>
+        `<span class="li"><span class="swatch dot" style="background:${b[1]}"></span>${b[0]}</span>`
+      ).join("") + `<span class="li" style="color:${INK3}">listings per 1,000 residents · circle area ∝ rate</span>`;
+    }
 
     // data table
     const tbody = document.querySelector("#europe-table tbody");
