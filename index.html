@@ -84,7 +84,7 @@
     </div>
     <div class="viz-canvas" id="europe-map"></div>
     <div class="legend" id="europe-legend"></div>
-    <p class="viz-note">What “circle area ∝ rate” means: it is the space a circle covers, not how wide it is, that follows the rate. Give a city twice the listings per resident and its circle covers twice as much of the map — it grows about one and a half times wider, not twice. Widening the circle instead would make it cover four times the space, and every gap between cities would look twice as big as it is. Every city's exact figures are in the table below.</p>
+    <p class="viz-note">What “circle area ∝ rate” means: it is the space a ring covers, not how wide it is, that follows the rate. Give a city twice the listings per resident and its ring covers twice as much of the map — it grows about one and a half times wider, not twice. Widening the ring instead would make it cover four times the space, and every gap between cities would look twice as big as it is. Every city's exact figures are in the table below.</p>
     <details class="data-table">
       <summary>View as table</summary>
       <table id="europe-table">
@@ -409,7 +409,7 @@
       </div>
       <div class="srcrow">
         <dt>How the Europe map is built</dt>
-        <dd>Each of the 23 cities is plotted at its true geographic coordinates. The measure is its rate: listings per 1,000 residents (total active listings ÷ population × 1,000). Circle <em>area</em>, not radius, is proportional to that rate (radius scales with its square root), because the eye reads area, so a city with twice the rate looks roughly twice as large, not four times; colour bands the same rate into five steps. Only a handful of cities are named on the map, so that the marks stay readable — no figures are printed on it. The table beneath the map carries the exact numbers for all 23: listings, rate, and entire-home share.</dd>
+        <dd>Each of the 23 cities is marked at its true geographic coordinates — a pinpoint for the city itself, a ring around it for the size of its market. The measure is the rate: listings per 1,000 residents (total active listings ÷ population × 1,000). Ring <em>area</em>, not radius, is proportional to that rate (radius scales with its square root), because the eye reads area, so a city with twice the rate looks roughly twice as large, not four times. Every city is named, but no figures are printed on the map: names are placed by trying eight positions around each city and taking the first that clears the labels already placed; on a narrow screen the type grows to stay legible and the names that no longer fit are dropped. The table beneath the map carries the exact numbers for all 23 — listings, rate and entire-home share — and hovering any ring gives the same figures.</dd>
       </div>
       <div class="srcrow">
         <dt>Platform nights</dt>
@@ -496,6 +496,6 @@
 </footer>
 
 <script src="data/dossier-data.js?v=5"></script>
-<script src="js/main.js?v=11"></script>
+<script src="js/main.js?v=12"></script>
 </body>
 </html>

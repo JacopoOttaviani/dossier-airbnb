@@ -11,15 +11,18 @@
   const SEQ = ["#D9E8E4", "#A6C9C4", "#68A0A2", "#337681", "#0B4F5C", "#06333B"];
   const INK2 = "#6B5F49", INK3 = "#93866C", LINE = "#DACDB2";
 
-  /* Europe map mark style — flip this one line to switch.
-     "legacy" the five-band petrol ramp: filled bubbles, colour and area both
-              encoding the rate, nine cities named and no figures on the map —
-              every city's numbers live in the table beneath it. The desk's pick.
-     The other two share a different chrome — one petrol hue, the basemap tokens
-     of the city dot maps, and all 23 cities named with their rate beside them:
-     "hollow" outline rings with a pinpoint centre;
-     "ink"    small filled discs on the dot maps' opacity ramp. */
-  const EUROPE_MAP_STYLE = "legacy";
+  /* Europe map mark style — flip this one line to switch. The first two share
+     the same chrome: one petrol hue, the basemap tokens of the city dot maps,
+     and all 23 cities named. No rate is printed on the map in any style — the
+     desk keeps the figures in the table beneath it.
+     "hollow" a pinpoint at the city with an outline ring around it. Area
+              carries the rate and the map stays airy, so the names can sit
+              over the circles. The desk's pick.
+     "ink"    small filled discs on the dot maps' opacity ramp — half the size
+              of the original, which is what frees the room for the names.
+     "legacy" the original five-band petrol ramp, colour and area both encoding
+              the rate, nine cities named. */
+  const EUROPE_MAP_STYLE = "hollow";
 
   const fmtN = n => n.toLocaleString("en-GB");
   const svgEl = (tag, attrs) => {
@@ -243,8 +246,8 @@
       while (gAll.firstChild) gAll.removeChild(gAll.firstChild);
       const taken = [];
       for (const c of queue) {
-        const fs = Math.max(c.focus ? 12.5 : 11.2, floor), val = String(c.per1000);
-        const w = (c.name.length + val.length + 1.2) * CW * fs, h = fs * 1.05;
+        const fs = Math.max(c.focus ? 12.5 : 11.2, floor);
+        const w = c.name.length * CW * fs, h = fs * 1.05;
         const r = Math.max(rOf(c.per1000), 2.2), gap = r + 3.5;
         const ring = k => [[gap * k, fs * 0.36, "start"], [-gap * k, fs * 0.36, "end"],
                           [0, -(r + 4) * k, "middle"], [0, (r + 2) * k + fs, "middle"],
@@ -283,9 +286,7 @@
         const t = svgEl("text", { x: put.x.toFixed(1), y: put.y.toFixed(1), "text-anchor": put.anchor,
           "font-size": fs, "font-weight": c.focus ? 600 : 500, fill: c.focus ? "#201B12" : INK2,
           "paint-order": "stroke", stroke: "#F7F1E3", "stroke-width": 3, "stroke-linejoin": "round" });
-        const nm = svgEl("tspan", {}); nm.textContent = c.name; t.appendChild(nm);
-        const vl = svgEl("tspan", { fill: SEQ[4], "font-weight": 600, dx: "3.2" });
-        vl.textContent = val; t.appendChild(vl);
+        t.textContent = c.name;
         gAll.appendChild(t);
       }
       };
@@ -319,9 +320,10 @@
       leg.innerHTML =
         `<span class="li"><span class="swatch ${HOLLOW ? "ring" : "dot"}" ` +
         `style="${HOLLOW ? "border-color" : "background"}:${SEQ[4]}"></span>` +
-        `the figure beside each city is its rate: listings per 1,000 residents</span>` +
+        `one mark per city — its area is the rate: listings per 1,000 residents</span>` +
         `<span class="li" style="color:${INK3}">circle area ∝ rate` +
-        `${HOLLOW ? " — see the note below" : " · darker means denser, as on the city maps"}</span>`;
+        `${HOLLOW ? " — see the note below" : " · darker means denser, as on the city maps"}` +
+        ` · exact figures in the table</span>`;
     } else {
       const bands = [["< 8", SEQ[1]], ["8–15", SEQ[2]], ["15–24", SEQ[3]], ["24–36", SEQ[4]], ["≥ 36", SEQ[5]]];
       leg.innerHTML = bands.map(b =>
