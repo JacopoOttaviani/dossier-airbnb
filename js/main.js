@@ -11,16 +11,15 @@
   const SEQ = ["#D9E8E4", "#A6C9C4", "#68A0A2", "#337681", "#0B4F5C", "#06333B"];
   const INK2 = "#6B5F49", INK3 = "#93866C", LINE = "#DACDB2";
 
-  /* Europe map mark style — flip this one line to switch. The first two share
-     the same chrome: one petrol hue, the basemap tokens of the city dot maps,
-     and all 23 cities named with their rate beside them.
-     "hollow" outline rings with a pinpoint centre. Area carries the rate and
-              the map stays airy, so the names can sit over the circles.
-     "ink"    small filled discs on the dot maps' opacity ramp — half the size
-              of the original, which is what frees the room for the names.
-     "legacy" the original five-band petrol ramp, colour and area both encoding
-              the rate, nine cities named. */
-  const EUROPE_MAP_STYLE = "hollow";
+  /* Europe map mark style — flip this one line to switch.
+     "legacy" the five-band petrol ramp: filled bubbles, colour and area both
+              encoding the rate, nine cities named and no figures on the map —
+              every city's numbers live in the table beneath it. The desk's pick.
+     The other two share a different chrome — one petrol hue, the basemap tokens
+     of the city dot maps, and all 23 cities named with their rate beside them:
+     "hollow" outline rings with a pinpoint centre;
+     "ink"    small filled discs on the dot maps' opacity ramp. */
+  const EUROPE_MAP_STYLE = "legacy";
 
   const fmtN = n => n.toLocaleString("en-GB");
   const svgEl = (tag, attrs) => {
@@ -322,12 +321,12 @@
         `style="${HOLLOW ? "border-color" : "background"}:${SEQ[4]}"></span>` +
         `the figure beside each city is its rate: listings per 1,000 residents</span>` +
         `<span class="li" style="color:${INK3}">circle area ∝ rate` +
-        `${HOLLOW ? "" : " · darker means denser, as on the city maps"}</span>`;
+        `${HOLLOW ? " — see the note below" : " · darker means denser, as on the city maps"}</span>`;
     } else {
       const bands = [["< 8", SEQ[1]], ["8–15", SEQ[2]], ["15–24", SEQ[3]], ["24–36", SEQ[4]], ["≥ 36", SEQ[5]]];
       leg.innerHTML = bands.map(b =>
         `<span class="li"><span class="swatch dot" style="background:${b[1]}"></span>${b[0]}</span>`
-      ).join("") + `<span class="li" style="color:${INK3}">listings per 1,000 residents · circle area ∝ rate</span>`;
+      ).join("") + `<span class="li" style="color:${INK3}">listings per 1,000 residents · circle area ∝ rate — see the note below</span>`;
     }
 
     // data table
@@ -565,7 +564,7 @@
       const i = Math.max(0, Math.min(years.length - 1, Math.round((sx - M.l) / (W - M.l - M.r) * (years.length - 1))));
       hoverLine.setAttribute("x1", X(i)); hoverLine.setAttribute("x2", X(i)); hoverLine.setAttribute("opacity", 0.5);
       const rows = series.map(s => s.idx[i] == null ? "" :
-        `<div class="trow"><span class="sw" style="background:${s.color}"></span><span>${s.label.split(" (")[0]}</span><span class="v">${s.idx[i]} · ${s.raw[i].toFixed(1)}M</span></div>`).join("");
+        `<div class="trow"><span class="sw" style="background:${s.color}"></span><span>${s.label.split(" (")[0]}</span><span class="v">${s.idx[i]} · ${(s.raw[i] / 1e6).toFixed(1)}M</span></div>`).join("");
       tip.show(`<b>${years[i]}</b>${rows}`, (X(i) / W) * bb.width, 40);
     });
     overlay.addEventListener("mouseleave", () => { tip.hide(); hoverLine.setAttribute("opacity", 0); });
@@ -580,7 +579,7 @@
     // table
     const tbody = document.querySelector("#eurostat-table tbody");
     tbody.innerHTML = series.map(s =>
-      `<tr><td>${s.label}</td>${s.raw.map(v => `<td>${v == null ? "–" : v.toFixed(1)}</td>`).join("")}</tr>`).join("");
+      `<tr><td>${s.label}</td>${s.raw.map(v => `<td>${v == null ? "–" : (v / 1e6).toFixed(1)}</td>`).join("")}</tr>`).join("");
   })();
 
   /* ============================================================

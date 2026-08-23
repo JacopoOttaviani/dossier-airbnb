@@ -463,6 +463,16 @@ figcaption.src a:hover,
   background: none; border: 1.4px solid currentColor;
 }
 
+/* plain-English gloss under a chart's key */
+.viz-note {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 68ch;
+  margin-top: 10px;
+}
+
 /* tooltip */
 .tip {
   position: absolute;
@@ -654,6 +664,7 @@ section.city {
   max-width: 60em;
   color: var(--ink);
 }
+.megadida .dida-text + .dida-text { margin-top: 14px; }
 .megadida .dida-text b { color: var(--petrol); }
 .megadida .policy {
   margin-top: 12px;
