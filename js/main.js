@@ -353,7 +353,9 @@
     const areas = nb.map(([name, count, share, d]) => {
       const p = svgEl("path", { d, class: "area" });
       const ttl = document.createElementNS(SVGNS, "title");
-      ttl.textContent = `${name} — ${fmtN(count)} listings (${share}% of the city)`;
+      ttl.textContent = count == null
+        ? `${name} — listings not broken out in this snapshot`
+        : `${name} — ${fmtN(count)} listings (${share}% of the city)`;
       p.appendChild(ttl);
       p._info = { name, count, share };
       gBase.appendChild(p);
@@ -390,9 +392,10 @@
         const bb = host.getBoundingClientRect();
         const i = p._info;
         tip.show(
-          `<b>${i.name}</b>` +
-          `<div class="trow"><span>listings</span><span class="v">${fmtN(i.count)}</span></div>` +
-          `<div class="trow"><span>of the city's total</span><span class="v">${i.share}%</span></div>`,
+          `<b>${i.name}</b>` + (i.count == null
+            ? `<div class="trow"><span>listings</span><span class="v">not broken out</span></div>`
+            : `<div class="trow"><span>listings</span><span class="v">${fmtN(i.count)}</span></div>` +
+              `<div class="trow"><span>of the city's total</span><span class="v">${i.share}%</span></div>`),
           ev.clientX - bb.left, ev.clientY - bb.top);
       });
     }
@@ -408,7 +411,8 @@
       `<th>${key === "berlin" ? "Bezirk" : "Neighbourhood"}</th><th>Listings</th><th>Share of city</th>` +
       `</tr></thead><tbody>` +
       nb.map(([name, count, share]) =>
-        `<tr><td>${name}</td><td>${fmtN(count)}</td><td>${share}%</td></tr>`).join("") +
+        `<tr><td>${name}</td><td>${count == null ? "–" : fmtN(count)}</td>` +
+        `<td>${share == null ? "–" : share + "%"}</td></tr>`).join("") +
       `</tbody></table>`;
     host.insertAdjacentElement("afterend", det);
   }
