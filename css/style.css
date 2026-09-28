@@ -38,7 +38,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; } /* clears the sticky menu bar (58px) and city menu */
 
 body {
   background: var(--cream);
@@ -56,6 +56,48 @@ img, svg { max-width: 100%; display: block; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 .textcol { max-width: var(--textw); margin-left: auto; margin-right: auto; }
+
+/* ------------------------------------------------ menu bar */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--cream) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--cream-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.masthead::-webkit-scrollbar { display: none; }
+.mast-nav {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.mast-nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.mast-nav a:hover { color: var(--ink); border-bottom-color: var(--petrol-bright); }
+.mast-nav .mast-dossier {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 15.5px;
+  color: var(--petrol);
+}
 
 /* ------------------------------------------------ hero */
 .hero {
@@ -491,7 +533,7 @@ details.data-table th { font-weight: 600; color: var(--ink-2); }
 /* ------------------------------------------------ city chapters */
 .city-nav {
   position: sticky;
-  top: 0;
+  top: 58px;
   z-index: 40;
   background: color-mix(in srgb, var(--cream) 94%, transparent);
   backdrop-filter: blur(6px);
@@ -712,5 +754,6 @@ section.city {
 }
 
 /* ------------------------------------------------ embedded in an iframe (e.g. a WordPress page) */
+.is-embedded .masthead,
 .is-embedded .city-nav { position: static; }
 .is-embedded .hero-inner { padding-top: 120px; padding-bottom: 84px; }
