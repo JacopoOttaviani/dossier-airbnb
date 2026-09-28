@@ -783,6 +783,32 @@ footer.colophon {
   color: #6E9793;
 }
 
+/* ------------------------------------------------ sources: collapsible */
+.src-toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  background: var(--petrol);
+  border: 0;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.src-toggle:hover { background: var(--petrol-bright); }
+.src-toggle:focus-visible { outline: 2px solid var(--petrol-bright); outline-offset: 3px; }
+.src-toggle .chev { display: inline-block; transition: transform .2s; }
+.src-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.js-src .src-toggle { display: inline-flex; }
+.js-src .src-body { margin-top: 28px; }
+.js-src #sources { padding-bottom: clamp(48px, 6vw, 72px); }
+.js-src .src-body[hidden] { display: none; }
+@media print { .src-toggle { display: none !important; } .src-body[hidden] { display: block !important; } }
+
 /* ------------------------------------------------ responsive */
 @media (max-width: 880px) {
   body { font-size: 17.5px; }

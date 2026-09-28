@@ -608,3 +608,27 @@
     document.querySelectorAll("section.city").forEach(s => io.observe(s));
   })();
 })();
+
+/* ---------- Sources & methodology: collapsed by default, opens on demand ---------- */
+(function () {
+  const btn = document.getElementById("src-toggle");
+  const body = document.getElementById("src-body");
+  if (!btn || !body) return;
+  document.documentElement.classList.add("js-src");
+  const label = btn.querySelector(".lbl");
+  function set(open) {
+    body.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+    label.textContent = open ? "Show less" : "Read more";
+  }
+  set(false);
+  btn.addEventListener("click", () => {
+    const open = body.hidden;
+    set(open);
+    if (!open) document.getElementById("sources").scrollIntoView({ block: "start" });
+  });
+  // any link to the sources section opens it
+  document.querySelectorAll('a[href="#sources"]').forEach(a => a.addEventListener("click", () => set(true)));
+  if (location.hash === "#sources") set(true);
+  window.addEventListener("hashchange", () => { if (location.hash === "#sources") set(true); });
+})();

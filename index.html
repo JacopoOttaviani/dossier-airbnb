@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=16">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪶</text></svg>">
 </head>
 <body>
@@ -390,11 +390,13 @@
 <!-- ================= SOURCES ================= -->
 <article class="article" id="sources" style="padding-top:0">
   <div class="section-head">
-    <p class="eyebrow">04 · Method</p>
-    <h2>Sources &amp; method</h2>
+    <p class="eyebrow">04 · Methodology</p>
+    <h2>Sources &amp; methodology</h2>
     <p class="dek">Every number on this page is traceable to a public source. Where we built a series ourselves, we say so and link the underlying publisher.</p>
   </div>
   <div class="wrap">
+    <button type="button" class="src-toggle" id="src-toggle" aria-expanded="true" aria-controls="src-body"><span class="lbl">Show less</span> <span class="chev" aria-hidden="true">&#9662;</span></button>
+    <div class="src-body" id="src-body">
     <dl class="srclist">
       <div class="srcrow">
         <dt>Listings &amp; maps</dt>
@@ -469,9 +471,10 @@
       </div>
       <div class="srcrow">
         <dt>Corrections</dt>
-        <dd>All figures checked in August 2026. Spotted an error? <a href="mailto:hello@thecormoran.eu">hello@thecormoran.eu</a> — we correct in public.</dd>
+        <dd>All figures checked in August 2026. Spotted an error? <a href="mailto:dossiers@thecormoran.com?subject=Correction%3A%20Dossier%20N%C2%BA%201%20%E2%80%94%20Airbnb%20and%20Europe%27s%20Rent%20Crisis">dossiers@thecormoran.com</a> — we correct in public.</dd>
       </div>
     </dl>
+    </div>
   </div>
 </article>
 
@@ -489,6 +492,8 @@
     <div>
       <h5>About</h5>
       <p>The Cormoran publishes data dossiers on the forces reshaping Europe: housing, energy, work, movement. Every number on this page can be traced to a public source — and every dataset we build is open on request.</p>
+      <h5 style="margin-top:24px">Credits</h5>
+      <p>The Cormoran's dossiers are vertical analyses of Europe's evergreen systemic issues. Data and design by <a href="https://www.linkedin.com/in/jacopo-ottaviani/">Jacopo Ottaviani</a>, edited by <a href="https://www.linkedin.com/in/stefano-liberti-43632330/">Stefano Liberti</a>. Got any feedback? Spotted an error, have data we should see, or want us to look at your city next? Write to us at <a href="mailto:dossiers@thecormoran.com?subject=Feedback%3A%20Dossier%20N%C2%BA%201%20%E2%80%94%20Airbnb%20and%20Europe%27s%20Rent%20Crisis">dossiers@thecormoran.com</a>.</p>
     </div>
   </div>
   <div class="colophon-bottom">
@@ -500,6 +505,6 @@
 </footer>
 
 <script src="data/dossier-data.js?v=9"></script>
-<script src="js/main.js?v=13"></script>
+<script src="js/main.js?v=14"></script>
 </body>
 </html>
