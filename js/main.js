@@ -632,3 +632,28 @@
   if (location.hash === "#sources") set(true);
   window.addEventListener("hashchange", () => { if (location.hash === "#sources") set(true); });
 })();
+
+/* ---------- Embedded in an iframe (e.g. a WordPress page): report height and scroll targets to the host page ---------- */
+(function () {
+  if (window.self === window.top) return;
+  const root = document.documentElement;
+  root.classList.add("is-embedded");
+  const post = msg => window.parent.postMessage(Object.assign({ source: "cormoran-dossier" }, msg), "*");
+  // outside links open in a new tab instead of inside the frame
+  document.querySelectorAll('a[href^="http"]').forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+  // the frame is as tall as the page, so the host page does the scrolling
+  let last = 0;
+  const report = () => {
+    const h = Math.ceil(document.body.getBoundingClientRect().height);
+    if (h !== last) { last = h; post({ type: "height", height: h }); }
+  };
+  new ResizeObserver(report).observe(document.body);
+  window.addEventListener("load", report);
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    const el = a && document.getElementById(a.getAttribute("href").slice(1));
+    if (!el) return;
+    e.preventDefault();
+    post({ type: "scroll", top: el.getBoundingClientRect().top + window.scrollY });
+  });
+})();
