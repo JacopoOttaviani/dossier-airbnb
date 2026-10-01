@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20">
+<link rel="stylesheet" href="css/style.css?v=21">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪶</text></svg>">
 </head>
 <body>
@@ -76,7 +76,7 @@
     </div>
     <div class="viz-canvas" id="europe-map"></div>
     <div class="legend" id="europe-legend"></div>
-    <p class="viz-note">What “circle area ∝ rate” means: it is the space a ring covers, not how wide it is, that follows the rate. Give a city twice the listings per resident and its ring covers twice as much of the map — it grows about one and a half times wider, not twice. Widening the ring instead would make it cover four times the space, and every gap between cities would look twice as big as it is. Every city's exact figures are in the table below.</p>
+    <p class="viz-note"><strong>How to read the rings:</strong> the bigger the ring's area, the higher the rate. A city with twice as many listings per resident gets a ring twice the area, which makes it about 1.4 times as wide. Exact figures for every city are in the table below.</p>
     <details class="data-table">
       <summary>View as table</summary>
       <table id="europe-table">
@@ -115,7 +115,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">37,228 listings · dot size scales with density · hover the map to name any <em>municipio</em></div>
+        <div class="viz-sub">37,228 listings · darker means more listings · hover the map to name any <em>municipio</em></div>
       </div>
       <div class="viz-canvas" id="map-rome"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/rome">Inside Airbnb — Rome</a>, <a href="https://data.insideairbnb.com/italy/lazio/rome/2026-06-20/visualisations/listings.csv">20 June 2026 snapshot</a>. Basemap: <em>municipio</em> boundaries from the same release.</figcaption>
@@ -151,7 +151,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">15,406 listings · dot size scales with density · hover the map to name any <em>barrio</em></div>
+        <div class="viz-sub">15,406 listings · darker means more listings · hover the map to name any <em>barrio</em></div>
       </div>
       <div class="viz-canvas" id="map-barcelona"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/barcelona">Inside Airbnb — Barcelona</a>, <a href="https://data.insideairbnb.com/spain/catalonia/barcelona/2026-06-24/visualisations/listings.csv">24 June 2026 snapshot</a>. Basemap: neighbourhood (<em>barrio</em>) boundaries from the same release; seven outlying barrios were drawn from the <a href="https://opendata-ajuntament.barcelona.cat/">Ajuntament de Barcelona</a>'s own boundary file.</figcaption>
@@ -188,7 +188,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">77,679 listings · dot size scales with density · hover the map to name any <em>arrondissement</em></div>
+        <div class="viz-sub">77,679 listings · darker means more listings · hover the map to name any <em>arrondissement</em></div>
       </div>
       <div class="viz-canvas" id="map-paris"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/paris">Inside Airbnb — Paris</a>, <a href="https://data.insideairbnb.com/france/ile-de-france/paris/2026-06-16/visualisations/listings.csv">16 June 2026 snapshot</a>. Basemap: arrondissement boundaries from the same release.</figcaption>
@@ -225,7 +225,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">12,855 listings · dot size scales with density · hover the map to name any <em>Bezirk</em></div>
+        <div class="viz-sub">12,855 listings · darker means more listings · hover the map to name any <em>Bezirk</em></div>
       </div>
       <div class="viz-canvas" id="map-berlin"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/berlin">Inside Airbnb — Berlin</a>, <a href="https://data.insideairbnb.com/germany/be/berlin/2026-06-26/visualisations/listings.csv">26 June 2026 snapshot</a>. Basemap: Bezirk boundaries from the same release.</figcaption>
@@ -262,7 +262,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">17,098 listings in the city proper · dot size scales with density · hover the map to name any <em>freguesia</em></div>
+        <div class="viz-sub">17,098 listings in the city proper · darker means more listings · hover the map to name any <em>freguesia</em></div>
       </div>
       <div class="viz-canvas" id="map-lisbon"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/lisbon">Inside Airbnb — Lisbon</a>, <a href="https://data.insideairbnb.com/portugal/lisbon/lisbon/2026-06-23/visualisations/listings.csv">23 June 2026 snapshot</a>, filtered to the Lisbon municipality. Basemap: parish (freguesia) boundaries from the same release.</figcaption>
@@ -299,7 +299,7 @@
     <figure class="viz">
       <div class="viz-head">
         <div class="viz-title">Every listing on the map</div>
-        <div class="viz-sub">92,799 listings · dot size scales with density · hover the map to name any borough</div>
+        <div class="viz-sub">92,799 listings · darker means more listings · hover the map to name any borough</div>
       </div>
       <div class="viz-canvas" id="map-london"></div>
       <figcaption class="src">Source: <a href="https://insideairbnb.com/london">Inside Airbnb — London</a>, <a href="https://data.insideairbnb.com/united-kingdom/england/london/2026-06-19/visualisations/listings.csv">19 June 2026 snapshot</a>. Basemap: borough boundaries from the same release.</figcaption>
@@ -403,7 +403,11 @@
       </div>
       <div class="srcrow">
         <dt>How the city maps are framed</dt>
-        <dd>Each city map is framed on its own listings rather than on the municipal boundary: the frame is the extent of the dot grid. Neighbourhood boundaries that reach past it are cut at the edge — the industrial and park land at the rim of every one of these cities — and a few outlying areas fall outside the frame altogether. Barcelona is the case that matters: ten of its 73 barrios, at the top of Nou Barris and along the Besòs in Sant Andreu, sit above the frame and hold 41 listings between them, 0.27 per cent of the city. Framed or not, every area appears in the table beneath its map.</dd>
+        <dd>Each city map is framed on its own listings rather than on the municipal boundary: the frame is the extent of the listings grid. Neighbourhood boundaries that reach past it are cut at the edge — the industrial and park land at the rim of every one of these cities — and a few outlying areas fall outside the frame altogether. Barcelona is the case that matters: ten of its 73 barrios, at the top of Nou Barris and along the Besòs in Sant Andreu, sit above the frame and hold 41 listings between them, 0.27 per cent of the city. Framed or not, every area appears in the table beneath its map.</dd>
+      </div>
+      <div class="srcrow">
+        <dt>How the city heatmaps are drawn</dt>
+        <dd>Each city map opens as a heatmap and switches to a dot map, and both draw on the same data: the city's listings counted on a grid 104 cells wide. The dot map puts one dot on every cell that holds a listing, larger and darker the more it holds. The heatmap spreads each cell's count over its neighbours with a gaussian kernel (a standard deviation of 1.1 cells), so that the pattern reads as a surface rather than a scatter, then sorts the result into five bands by its share of the city's densest spot: under 2.5 per cent, 2.5–10, 10–30, 30–60 and 60 per cent or more. Land where the smoothed count falls below 0.15 listings a cell is left blank. Because each city is banded against its own peak, the darkest band marks the densest part of that city, not a density that can be compared from one city to the next — the per-resident rates on the Europe map do that.</dd>
       </div>
       <div class="srcrow">
         <dt>How the Europe map is built</dt>
@@ -470,6 +474,6 @@
 <p class="credits">Concept: <a href="https://www.linkedin.com/in/jacopo-ottaviani/">Jacopo Ottaviani</a> and <a href="https://www.linkedin.com/in/stefano-liberti-43632330/">Stefano Liberti</a>. Data and design: <a href="https://www.linkedin.com/in/jacopo-ottaviani/">Jacopo Ottaviani</a>. Editing: <a href="https://www.linkedin.com/in/stefano-liberti-43632330/">Stefano Liberti</a>. Text and visualisations CC BY 4.0. Feedback and corrections: <a href="mailto:dossiers@thecormoran.com?subject=Feedback%3A%20Dossier%20N%C2%BA%201%20%E2%80%94%20Airbnb%20and%20Europe%27s%20Rent%20Crisis">dossiers@thecormoran.com</a>.</p>
 
 <script src="data/dossier-data.js?v=12"></script>
-<script src="js/main.js?v=17"></script>
+<script src="js/main.js?v=18"></script>
 </body>
 </html>

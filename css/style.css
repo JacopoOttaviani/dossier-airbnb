@@ -417,7 +417,58 @@ figcaption.src a:hover,
   stroke: var(--ink-2);
   stroke-width: .5;
 }
-.dots { pointer-events: none; }
+.dots, .heat { pointer-events: none; }
+.heat-lines path {
+  fill: none;
+  stroke: var(--cream);
+  stroke-opacity: .75;
+  stroke-width: .28;
+  stroke-linejoin: round;
+}
+.area-hl {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: .5;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+/* city maps: heatmap / dot map switch, with the legend of the view showing */
+.map-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+.map-bar + .viz-canvas { margin-top: 10px; }
+.map-switch { display: inline-flex; border: 1px solid var(--petrol); border-radius: 3px; overflow: hidden; }
+.map-switch button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--petrol);
+  background: transparent;
+  border: 0;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.map-switch button + button { border-left: 1px solid var(--petrol); }
+.map-switch button:hover { background: var(--cream-deep); }
+.map-switch button[aria-pressed="true"] { background: var(--petrol); color: var(--cream); }
+.map-switch button:focus-visible { outline: 2px solid var(--petrol-bright); outline-offset: -3px; }
+.map-legend { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.map-legend[hidden] { display: none; }
+.map-legend .bands { display: inline-flex; gap: 2px; }
+.map-legend .bands span { width: 22px; height: 10px; }
+.map-legend .bands span:first-child { border-radius: 2px 0 0 2px; }
+.map-legend .bands span:last-child { border-radius: 0 2px 2px 0; }
+.map-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+.map-legend .aside { color: var(--ink-3); }
+@media print { .map-switch { display: none; } }
 
 /* legend */
 .legend {

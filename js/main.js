@@ -322,8 +322,8 @@
         `style="${HOLLOW ? "border-color" : "background"}:${SEQ[4]}"></span>` +
         `one mark per city — its area is the rate: listings per 1,000 residents</span>` +
         `<span class="li" style="color:${INK3}">circle area ∝ rate` +
-        `${HOLLOW ? " — see the note below" : " · darker means denser, as on the city maps"}` +
-        ` · exact figures in the table</span>`;
+        `${HOLLOW ? " — see the note below for how to read the rings" : " · darker means denser, as on the city maps · exact figures in the table"}` +
+        `</span>`;
     } else {
       const bands = [["< 8", SEQ[1]], ["8–15", SEQ[2]], ["15–24", SEQ[3]], ["24–36", SEQ[4]], ["≥ 36", SEQ[5]]];
       leg.innerHTML = bands.map(b =>
@@ -338,8 +338,74 @@
   })();
 
   /* ============================================================
-     CITY DENSITY MAPS
+     CITY DENSITY MAPS — a banded heatmap by default, the dot map one click away
      ============================================================ */
+  /* "heat" or "dots": the view every city map opens on. The switch above
+     each map flips all six at once. */
+  const CITY_MAP_DEFAULT = "heat";
+  const cityMaps = [];
+  function setCityMapView(view) {
+    for (const m of cityMaps) m.set(view);
+  }
+
+  /* The heat surface: the same per-cell counts as the dots, spread over their
+     neighbours by a gaussian of HEAT_SIGMA grid cells and rastered at
+     HEAT_SCALE pixels a cell. Under HEAT_MIN listings a cell (after smoothing)
+     the land stays bare. Bands are shares of the city's own densest point, so
+     a colour compares places within a city, not across cities. */
+  const HEAT_SCALE = 6, HEAT_SIGMA = 1.1, HEAT_MIN = 0.15;
+  const HEAT_BANDS = [0.025, 0.1, 0.3, 0.6];          // 5 bands: below, between, above
+  const mixRGB = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+  const hexRGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  function heatSteps(key) {
+    // one hue, light to dark: a cream tint, the chapter colour, the colour toward ink
+    const c = hexRGB(CITY_COLOR[key]), cream = hexRGB("#F2E3C2"), ink = hexRGB("#201B12");
+    const stops = [[0, cream], [0.38, mixRGB(cream, c, 0.55)], [0.72, c], [1, mixRGB(c, ink, 0.5)]];
+    const at = t => {
+      for (let i = 1; i < stops.length; i++) if (t <= stops[i][0]) {
+        const [t0, a] = stops[i - 1], [t1, b] = stops[i];
+        return mixRGB(a, b, (t - t0) / (t1 - t0));
+      }
+    };
+    return [0.2, 0.4, 0.6, 0.8, 1].map(t => at(t).map(Math.round));
+  }
+  function heatRaster(g, steps) {
+    const S = HEAT_SCALE, W = g.w * S, H = g.h * S, f = new Float32Array(W * H);
+    for (const [x, y, c] of g.cells)
+      for (let j = 0; j < S; j++) f.fill(c, (y * S + j) * W + x * S, (y * S + j) * W + x * S + S);
+    const sd = HEAT_SIGMA * S, R = Math.ceil(sd * 3), k = [];
+    let ks = 0;
+    for (let i = -R; i <= R; i++) { const v = Math.exp(-i * i / (2 * sd * sd)); k.push(v); ks += v; }
+    for (let i = 0; i < k.length; i++) k[i] /= ks;
+    const tmp = new Float32Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let a = 0;
+      for (let i = Math.max(-R, -x); i <= Math.min(R, W - 1 - x); i++) a += f[y * W + x + i] * k[i + R];
+      tmp[y * W + x] = a;
+    }
+    let max = 0;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let a = 0;
+      for (let i = Math.max(-R, -y); i <= Math.min(R, H - 1 - y); i++) a += tmp[(y + i) * W + x] * k[i + R];
+      f[y * W + x] = a;
+      if (a > max) max = a;
+    }
+    const cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext("2d"), img = ctx.createImageData(W, H);
+    for (let p = 0; p < f.length; p++) {
+      if (f[p] < HEAT_MIN) continue;
+      const share = f[p] / max;
+      let b = 0;
+      while (b < HEAT_BANDS.length && share >= HEAT_BANDS[b]) b++;
+      const rgb = steps[b];
+      img.data[p * 4] = rgb[0]; img.data[p * 4 + 1] = rgb[1]; img.data[p * 4 + 2] = rgb[2];
+      img.data[p * 4 + 3] = 242;
+    }
+    ctx.putImageData(img, 0, 0);
+    return cv.toDataURL();
+  }
+
   function densityMap(key) {
     const host = document.getElementById("map-" + key);
     if (!host) return;
@@ -362,8 +428,23 @@
       return p;
     });
     svg.appendChild(gBase);
-    // listings as dots: area carries the count, so the map stays crisp.
-    // pointer-events off, so the hover always reaches the boundary beneath.
+    // heat: the banded surface, clipped to the boundaries, with the boundaries
+    // redrawn in cream on top so they read over the dark core.
+    // pointer-events off on both layers, so the hover always reaches the basemap.
+    const steps = heatSteps(key);
+    const clipId = "heat-clip-" + key;
+    const defs = svgEl("defs", {}), clip = svgEl("clipPath", { id: clipId });
+    for (const [, , , d] of nb) clip.appendChild(svgEl("path", { d }));
+    defs.appendChild(clip);
+    svg.appendChild(defs);
+    const gHeat = svgEl("g", { class: "heat" });
+    gHeat.appendChild(svgEl("image", { href: heatRaster(g, steps), x: 0, y: 0, width: g.w, height: g.h,
+      preserveAspectRatio: "none", "clip-path": `url(#${clipId})` }));
+    const gLines = svgEl("g", { class: "heat-lines" });
+    for (const [, , , d] of nb) gLines.appendChild(svgEl("path", { d }));
+    gHeat.appendChild(gLines);
+    svg.appendChild(gHeat);
+    // dots: area carries the count, so the map stays crisp.
     const gDots = svgEl("g", { class: "dots" });
     const frag = document.createDocumentFragment();
     for (const [x, y, c] of g.cells) {
@@ -376,7 +457,33 @@
     }
     gDots.appendChild(frag);
     svg.appendChild(gDots);
+    // the hovered boundary, outlined above both layers
+    const hl = svgEl("path", { class: "area-hl" });
+    svg.appendChild(hl);
     host.appendChild(svg);
+
+    /* the switch, and the legend for whichever view is showing */
+    const bar = document.createElement("div");
+    bar.className = "map-bar";
+    const sw = steps.map(c => `<span style="background:rgb(${c.join(",")})"></span>`).join("");
+    bar.innerHTML =
+      `<div class="map-switch" role="group" aria-label="Map view">` +
+      `<button type="button" data-view="heat">Heatmap</button>` +
+      `<button type="button" data-view="dots">Dot map</button></div>` +
+      `<div class="map-legend" data-for="heat"><span>fewer</span><span class="bands">${sw}</span>` +
+      `<span>more listings</span><span class="aside">· scaled to the city's densest spot</span></div>` +
+      `<div class="map-legend" data-for="dots"><span class="dot" style="background:${color}"></span>` +
+      `<span>dot size and depth scale with the listings in each cell</span></div>`;
+    host.insertAdjacentElement("beforebegin", bar);
+    const buttons = bar.querySelectorAll("button"), legends = bar.querySelectorAll(".map-legend");
+    cityMaps.push({ set(view) {
+      gHeat.style.display = view === "heat" ? "" : "none";
+      gDots.style.display = view === "dots" ? "" : "none";
+      for (const b of buttons) b.setAttribute("aria-pressed", b.dataset.view === view);
+      for (const l of legends) l.hidden = l.dataset.for !== view;
+    } });
+    cityMaps[cityMaps.length - 1].set(CITY_MAP_DEFAULT);
+    for (const b of buttons) b.addEventListener("click", () => setCityMapView(b.dataset.view));
 
     /* names on hover */
     const tip = makeTip(host);
@@ -384,11 +491,16 @@
     function clear() {
       if (current) current.classList.remove("on");
       current = null;
+      hl.removeAttribute("d");
       tip.hide();
     }
     for (const p of areas) {
       p.addEventListener("mousemove", ev => {
-        if (current !== p) { if (current) current.classList.remove("on"); p.classList.add("on"); current = p; }
+        if (current !== p) {
+          if (current) current.classList.remove("on");
+          p.classList.add("on"); current = p;
+          hl.setAttribute("d", p.getAttribute("d"));
+        }
         const bb = host.getBoundingClientRect();
         const i = p._info;
         tip.show(
