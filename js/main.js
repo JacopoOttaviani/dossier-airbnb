@@ -191,12 +191,12 @@
         : { cx: x, cy: y, r, fill: colOf(c.per1000), "fill-opacity": 0.82,
             stroke: "#F7F1E3", "stroke-width": 2 });
       const ttl = document.createElementNS(SVGNS, "title");
-      ttl.textContent = `${c.name} — ${c.per1000} listings per 1,000 residents`;
+      ttl.textContent = `${c.name} — ${c.per1000.toFixed(1)} listings per 1,000 residents`;
       dot.appendChild(ttl);
 
       const rows =
         `<div class="trow"><span>listings</span><span class="v">${fmtN(c.listings)}</span></div>` +
-        `<div class="trow"><span>per 1,000 residents</span><span class="v">${c.per1000}</span></div>` +
+        `<div class="trow"><span>per 1,000 residents</span><span class="v">${c.per1000.toFixed(1)}</span></div>` +
         `<div class="trow"><span>entire homes</span><span class="v">${c.entirePct}%</span></div>`;
       const target = INKY ? svgEl("circle", { cx: x, cy: y, r: r + 5 }) : dot;
       target.addEventListener("mousemove", ev => {
@@ -334,7 +334,7 @@
     // data table
     const tbody = document.querySelector("#europe-table tbody");
     tbody.innerHTML = cities.map(c =>
-      `<tr><td>${c.name}</td><td>${fmtN(c.listings)}</td><td>${c.per1000}</td><td>${c.entirePct}%</td></tr>`).join("");
+      `<tr><td>${c.name}</td><td>${fmtN(c.listings)}</td><td>${c.per1000.toFixed(1)}</td><td>${c.entirePct}%</td></tr>`).join("");
   })();
 
   /* ============================================================
@@ -490,7 +490,7 @@
     const put = (id, val) => { const e = document.getElementById(id + "-" + key); if (e) e.innerHTML = val; };
     put("st-listings", fmtN(c.total));
     put("st-entire", c.entirePct + "<small>%</small>");
-    put("st-per1000", c.per1000);
+    put("st-per1000", c.per1000.toFixed(1));
     put("st-stock", c.stockPct.toFixed(1) + "<small>%</small>");
     put("st-multi", c.multiHostPct + "<small>%</small>");
   }
