@@ -5,11 +5,11 @@
 
 :root {
   /* surfaces */
-  --cream: #F7F1E3;
-  --cream-deep: #EFE5CE;
-  --cream-line: #DACDB2;
-  --panel: #0B3B44;          /* hero / footer petrol panel */
-  --panel-deep: #072B32;
+  --cream: #F1EDE2;
+  --cream-deep: #E9E1CD;
+  --cream-line: #D4C9B1;
+  --panel: #302B72;          /* hero / footer petrol panel */
+  --panel-deep: #27195E;
 
   /* ink */
   --ink: #201B12;
@@ -17,16 +17,16 @@
   --ink-3: #93866C;
 
   /* brand accent */
-  --petrol: #0B4F5C;
-  --petrol-bright: #0087A0;
+  --petrol: #302B72;
+  --petrol-bright: #C53A19;
 
   /* validated categorical palette (on cream) */
-  --c-paris: #0087A0;
-  --c-rome: #C4452F;
-  --c-barcelona: #4763D6;
-  --c-lisbon: #8A6A00;
-  --c-berlin: #B0448E;
-  --c-london: #5C5344;
+  --c-paris: #6679CE;
+  --c-rome: #C53A19;
+  --c-barcelona: #302B72;
+  --c-lisbon: #5C8868;
+  --c-berlin: #C3699E;
+  --c-london: #491F14;
 
   /* type */
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
@@ -124,8 +124,8 @@ img, svg { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(12deg, rgba(7,43,50,.82) 0%, rgba(7,43,50,.56) 45%, rgba(11,59,68,.28) 100%),
-    linear-gradient(180deg, rgba(7,43,50,.16) 0%, rgba(7,43,50,.42) 100%);
+    linear-gradient(12deg, rgba(39,25,94,.82) 0%, rgba(39,25,94,.56) 45%, rgba(48,43,114,.28) 100%),
+    linear-gradient(180deg, rgba(39,25,94,.16) 0%, rgba(39,25,94,.42) 100%);
 }
 .hero-inner {
   position: relative;
@@ -139,7 +139,7 @@ img, svg { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: #9FD4CE;
+  color: #F2E797;
   margin-bottom: 24px;
 }
 .kicker .no { color: var(--cream); }
@@ -151,29 +151,29 @@ img, svg { max-width: 100%; display: block; }
   letter-spacing: -.015em;
   max-width: 11em;
 }
-.hero h1 em { font-style: italic; color: #9FD4CE; }
+.hero h1 em { font-style: italic; color: #F2E797; }
 .standfirst {
   margin-top: 28px;
   max-width: 34em;
   font-size: clamp(19px, 2vw, 23px);
   line-height: 1.45;
-  color: #E9E0CB;
+  color: #E3DCCA;
 }
 .hero-meta {
   margin-top: 36px;
   font-family: var(--sans);
   font-size: 13px;
   letter-spacing: .05em;
-  color: #8FB6B3;
+  color: #98A9E8;
   text-transform: uppercase;
 }
 .hero-credit {
   margin-top: 10px;
   font-family: var(--sans);
   font-size: 11.5px;
-  color: #6E9793;
+  color: #7E8BCC;
 }
-.hero-credit a { color: #6E9793; }
+.hero-credit a { color: #7E8BCC; }
 
 /* ------------------------------------------------ article body */
 .article { padding: clamp(48px, 7vw, 84px) 0 0; }
@@ -228,7 +228,7 @@ img, svg { max-width: 100%; display: block; }
   padding: 11px 0 9px;
   border-bottom: 1px solid var(--cream-line);
 }
-.sm:hover { background: rgba(11,79,92,.045); }
+.sm:hover { background: rgba(48,43,114,.045); }
 .sm:hover .sm-name { color: var(--city); }
 .sm-head {
   display: flex;
@@ -405,15 +405,15 @@ figcaption.src a:hover,
 
 /* city maps: boundaries are hoverable, dots never intercept the pointer */
 .basemap .area {
-  fill: #EBE1C9;
-  stroke: #D5C7A9;
+  fill: #E5DDC8;
+  stroke: #CFC3A8;
   stroke-width: .22;
   stroke-linejoin: round;
   cursor: crosshair;
   transition: fill .12s;
 }
 .basemap .area.on {
-  fill: #DDCEA9;
+  fill: #D7CAA8;
   stroke: var(--ink-2);
   stroke-width: .5;
 }
@@ -517,9 +517,9 @@ figcaption.src a:hover,
 }
 .tip b { font-weight: 600; }
 .tip.pinned { pointer-events: auto; box-shadow: 0 6px 20px rgba(32,27,18,.4); }
-.tip .tlink { margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(247,241,227,.25); }
-.tip .tlink a { color: #9FD4CE; text-decoration: underline; }
-.tip .tnote { margin-top: 6px; color: #B8AF9C; font-size: 11px; }
+.tip .tlink { margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(241,237,226,.25); }
+.tip .tlink a { color: #F2E797; text-decoration: underline; }
+.tip .tnote { margin-top: 6px; color: #B2AB9B; font-size: 11px; }
 .tip .trow { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
 .tip .trow .sw { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; }
 .tip .trow .v { margin-left: auto; font-variant-numeric: tabular-nums; }

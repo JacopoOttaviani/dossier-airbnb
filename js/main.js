@@ -5,11 +5,11 @@
   const SVGNS = "http://www.w3.org/2000/svg";
 
   const CITY_COLOR = {
-    paris: "#0087A0", rome: "#C4452F", barcelona: "#4763D6",
-    lisbon: "#8A6A00", berlin: "#B0448E", london: "#5C5344"
+    paris: "#6679CE", rome: "#C53A19", barcelona: "#302B72",
+    lisbon: "#5C8868", berlin: "#C3699E", london: "#491F14"
   };
-  const SEQ = ["#D9E8E4", "#A6C9C4", "#68A0A2", "#337681", "#0B4F5C", "#06333B"];
-  const INK2 = "#6B5F49", INK3 = "#93866C", LINE = "#DACDB2";
+  const SEQ = ["#D5D9E5", "#B6C1E7", "#98A9E8", "#6168AC", "#302B72", "#27195E"];
+  const INK2 = "#6B5F49", INK3 = "#93866C", LINE = "#D4C9B1";
 
   /* Europe map mark style — flip this one line to switch. The first two share
      the same chrome: one petrol hue, the basemap tokens of the city dot maps,
@@ -124,7 +124,7 @@
       }));
       svg.appendChild(svgEl("circle", {
         cx: X(vals.length - 1), cy: Y(vals[vals.length - 1]), r: 2.8,
-        fill: color, stroke: "#F7F1E3", "stroke-width": 1.4
+        fill: color, stroke: "#F1EDE2", "stroke-width": 1.4
       }));
       card.querySelector(".sm-spark").appendChild(svg);
       host.appendChild(card);
@@ -152,8 +152,8 @@
 
     // countries
     const gLand = svgEl("g", INKY
-      ? { fill: "#EBE1C9", stroke: "#D5C7A9", "stroke-width": 0.9, "stroke-linejoin": "round" }
-      : { fill: "#EDE3CC", stroke: "#D8CBAE", "stroke-width": 1 });
+      ? { fill: "#E5DDC8", stroke: "#CFC3A8", "stroke-width": 0.9, "stroke-linejoin": "round" }
+      : { fill: "#E7DFCB", stroke: "#D2C7AD", "stroke-width": 1 });
     for (const f of D.europe) {
       for (const poly of f.p) {
         let d = "";
@@ -187,9 +187,9 @@
             stroke: SEQ[4], "stroke-width": 1.4, "stroke-opacity": 0.85 }
         : INKY
         ? { cx: x, cy: y, r, fill: SEQ[4], opacity: inkOf(c.per1000),
-            stroke: "#F7F1E3", "stroke-width": 1 }
+            stroke: "#F1EDE2", "stroke-width": 1 }
         : { cx: x, cy: y, r, fill: colOf(c.per1000), "fill-opacity": 0.82,
-            stroke: "#F7F1E3", "stroke-width": 2 });
+            stroke: "#F1EDE2", "stroke-width": 2 });
       const ttl = document.createElementNS(SVGNS, "title");
       ttl.textContent = `${c.name} — ${c.per1000.toFixed(1)} listings per 1,000 residents`;
       dot.appendChild(ttl);
@@ -285,7 +285,7 @@
         taken.push(put.box);
         const t = svgEl("text", { x: put.x.toFixed(1), y: put.y.toFixed(1), "text-anchor": put.anchor,
           "font-size": fs, "font-weight": c.focus ? 600 : 500, fill: c.focus ? "#201B12" : INK2,
-          "paint-order": "stroke", stroke: "#F7F1E3", "stroke-width": 3, "stroke-linejoin": "round" });
+          "paint-order": "stroke", stroke: "#F1EDE2", "stroke-width": 3, "stroke-linejoin": "round" });
         t.textContent = c.name;
         gAll.appendChild(t);
       }
@@ -307,7 +307,7 @@
       const [dx, dy] = offsets[c.key] || [10, -6];
       const anchor = dx < 0 ? "end" : "start";
       const t = txt(gLab, px(c.lon) + dx + (dx < 0 ? -rOf(c.per1000) : rOf(c.per1000)) * 0.4, py(c.lat) + dy, c.name,
-        { "text-anchor": anchor, fill: "#201B12", "font-size": 13.5, "paint-order": "stroke", stroke: "#F7F1E3", "stroke-width": 3 });
+        { "text-anchor": anchor, fill: "#201B12", "font-size": 13.5, "paint-order": "stroke", stroke: "#F1EDE2", "stroke-width": 3 });
       if (!c.focus) { t.setAttribute("font-weight", 400); t.setAttribute("fill", INK2); }
     }
     svg.appendChild(gLab);
@@ -359,7 +359,7 @@
   const hexRGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
   function heatSteps(key) {
     // one hue, light to dark: a cream tint, the chapter colour, the colour toward ink
-    const c = hexRGB(CITY_COLOR[key]), cream = hexRGB("#F2E3C2"), ink = hexRGB("#201B12");
+    const c = hexRGB(CITY_COLOR[key]), cream = hexRGB("#ECDFC1"), ink = hexRGB("#201B12");
     const stops = [[0, cream], [0.38, mixRGB(cream, c, 0.55)], [0.72, c], [1, mixRGB(c, ink, 0.5)]];
     const at = t => {
       for (let i = 1; i < stops.length; i++) if (t <= stops[i][0]) {
@@ -565,11 +565,11 @@
     const d = vals.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("");
     svg.appendChild(svgEl("path", { d, fill: "none", stroke: color, "stroke-width": 2.4, "stroke-linejoin": "round", "stroke-linecap": "round" }));
     const last = vals[vals.length - 1];
-    svg.appendChild(svgEl("circle", { cx: X(vals.length - 1), cy: Y(last), r: 4, fill: color, stroke: "#F7F1E3", "stroke-width": 2 }));
+    svg.appendChild(svgEl("circle", { cx: X(vals.length - 1), cy: Y(last), r: 4, fill: color, stroke: "#F1EDE2", "stroke-width": 2 }));
     txt(svg, W - M.r + 8, Y(last) + 4, String(last), { fill: color, "font-weight": 700, "font-size": 14 });
 
     // hover
-    const hoverDot = svgEl("circle", { r: 4.5, fill: color, stroke: "#F7F1E3", "stroke-width": 2, opacity: 0 });
+    const hoverDot = svgEl("circle", { r: 4.5, fill: color, stroke: "#F1EDE2", "stroke-width": 2, opacity: 0 });
     const hoverLine = svgEl("line", { y1: M.t, y2: H - M.b, stroke: INK3, "stroke-width": 1, opacity: 0 });
     svg.appendChild(hoverLine); svg.appendChild(hoverDot);
     const tip = makeTip(host);
@@ -651,7 +651,7 @@
       let li = s.idx.length - 1;
       while (s.idx[li] == null) li--;
       const endY = Y(s.idx[li]);
-      svg.appendChild(svgEl("circle", { cx: X(li), cy: endY, r: 4, fill: s.color, stroke: "#F7F1E3", "stroke-width": 2 }));
+      svg.appendChild(svgEl("circle", { cx: X(li), cy: endY, r: 4, fill: s.color, stroke: "#F1EDE2", "stroke-width": 2 }));
       txt(svg, X(li) + 10, endY + 4, `${s.idx[li]} · ${s.label}`, { fill: s.color, "font-weight": 600, "font-size": 13 });
     }
 
@@ -668,7 +668,7 @@
       if (s.idx[i] == null) continue;
       const x = X(i), y = Y(s.idx[i]);
       svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 9, fill: "#201B12" }));
-      txt(svg, x, y + 4, String(e.n), { "text-anchor": "middle", fill: "#F7F1E3", "font-size": 11, "font-weight": 700 });
+      txt(svg, x, y + 4, String(e.n), { "text-anchor": "middle", fill: "#F1EDE2", "font-size": 11, "font-weight": 700 });
     }
 
     /* hover crosshair */
