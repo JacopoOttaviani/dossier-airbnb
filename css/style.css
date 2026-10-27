@@ -57,7 +57,10 @@ img, svg { max-width: 100%; display: block; }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 .textcol { max-width: var(--textw); margin-left: auto; margin-right: auto; }
 
-/* ------------------------------------------------ menu bar */
+/* ------------------------------------------------ menu bar
+   Section anchors, and the logo when the page is opened on its own. Inside
+   the WordPress site the logo, the social links and the footer come from the
+   site, so the logo is hidden there (see "embedded" below). */
 .masthead {
   position: sticky;
   top: 0;
@@ -98,6 +101,15 @@ img, svg { max-width: 100%; display: block; }
   font-size: 15.5px;
   color: var(--petrol);
 }
+.mast-nav .mast-logo {
+  display: flex;
+  flex-shrink: 0;
+  padding: 0 22px 0 0;
+  border-bottom: 0;
+  border-right: 1px solid var(--cream-line);
+}
+.mast-logo img { display: block; width: auto; height: 24px; }
+@media (max-width: 520px) { .mast-logo img { height: 26px; } }
 
 /* ------------------------------------------------ hero */
 .hero {
@@ -808,3 +820,4 @@ section.city {
 .is-embedded .masthead,
 .is-embedded .city-nav { position: static; }
 .is-embedded .hero-inner { padding-top: 120px; padding-bottom: 84px; }
+.is-embedded .mast-nav .mast-logo { display: none; }

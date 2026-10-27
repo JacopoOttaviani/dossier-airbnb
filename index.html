@@ -8,14 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261016">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪶</text></svg>">
+<link rel="stylesheet" href="css/style.css?v=20261027">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- inside the WordPress page: hide the logo before the first paint -->
+<script>if (window.self !== window.top) document.documentElement.classList.add("is-embedded");</script>
 </head>
 <body>
 
-<!-- ================= MENU BAR (anchors only: logo and social come from the WordPress site) ================= -->
+<!-- ================= MENU BAR (section anchors; the logo shows only when the page is opened on its own, since inside WordPress the site's header carries it) ================= -->
 <header class="masthead">
   <nav class="mast-nav" aria-label="Dossier">
+    <a href="https://thecormoran.com/" class="mast-logo"><picture><source media="(max-width: 520px)" srcset="assets/cormoran-monogramma.svg" width="17" height="26"><img src="assets/cormoran-logotipo.svg" alt="The Cormoran" width="108" height="24"></picture></a>
     <a href="#dossier" class="mast-dossier">Airbnb &amp; Europe's Rent Crisis</a>
     <a href="#cities">The six cities</a>
     <a href="#restrictions">Did the rules work?</a>
