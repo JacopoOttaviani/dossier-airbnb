@@ -44,7 +44,7 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 19.5px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -696,7 +696,7 @@ section.city {
 }
 .megadida .dida-text {
   margin-top: 22px;
-  font-size: 17.5px;
+  font-size: 18px;
   line-height: 1.6;
   max-width: 60em;
   color: var(--ink);
@@ -803,7 +803,7 @@ section.city {
 
 /* ------------------------------------------------ responsive */
 @media (max-width: 880px) {
-  body { font-size: 17.5px; }
+  body { font-size: 18px; }
   .intro-grid { grid-template-columns: 1fr; gap: 30px; }
   .rail-grid { grid-template-columns: 1fr 1fr; column-gap: 22px; }
   .srclist .srcrow { grid-template-columns: 1fr; gap: 5px; }
